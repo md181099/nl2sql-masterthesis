@@ -6,3 +6,5 @@ data/sql_create_context/train_sft_qwen35_9b_base_full_chat_v1_clean_anti_overjoi
 data/sql_create_context/train_sft_llama32_3b_instruct_full_chat_v2_old25k_no_dev_overlap_seed42.jsonl filter=lfs diff=lfs merge=lfs -text
 data/sql_create_context/val_sft_qwen35_full_chat_v2_mixed_trainothers700_sqlcc1800_no_train_no_dev_overlap_seed42_schemaheaderfix.jsonl filter=lfs diff=lfs merge=lfs -text
 data/sql_create_context/val_sft_llama32_3b_instruct_full_chat_v2_mixed_trainothers700_sqlcc1800_no_train_no_dev_overlap_seed42_schemaheaderfix.jsonl filter=lfs diff=lfs merge=lfs -text
+results/**/*.csv filter=lfs diff=lfs merge=lfs -text
+results/**/*.jsonl filter=lfs diff=lfs merge=lfs -text
