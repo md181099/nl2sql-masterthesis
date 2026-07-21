@@ -1,0 +1,79 @@
+{
+  "schema_version": 2,
+  "purpose": "posthoc_loss_diagnostic_checkpoint_discovery",
+  "model": {
+    "llm": "qwen35_9b_base",
+    "label": "qwen35_9b_v2",
+    "model_id": "Qwen/Qwen3.5-9B-Base",
+    "tokenizer_id": "Qwen/Qwen3.5-9B-Base",
+    "revision": "68c46c4b3498877f3ef123c856ecfde50c39f404",
+    "local_files_only": true
+  },
+  "validation": {
+    "label": "mixedval2500_v2_schemaheaderfix",
+    "path": "data/sql_create_context/val_sft_qwen35_full_chat_v2_mixed_trainothers700_sqlcc1800_no_train_no_dev_overlap_seed42_schemaheaderfix.jsonl",
+    "sha256": "711b23a6dfca40234a33e9aca66506eb33df197f69b6f466fd875854bdb89c08",
+    "source_prefixes": {
+      "train_others": [
+        "SPIDER_TRAIN_OTHERS_"
+      ],
+      "sqlcc": [
+        "SCC_"
+      ]
+    },
+    "expected": {
+      "rows": 2500,
+      "source_rows": {
+        "train_others": 700,
+        "sqlcc": 1800
+      },
+      "sql_tokens": 91190,
+      "assistant_completion_tokens": 93690,
+      "max_tokens_with_eos": 852,
+      "packed_sequences": 444
+    }
+  },
+  "adapter_discovery": {
+    "adapter_root": "adapters/qwen35_9b_base/lora_v2_fullchat_old25k_r8_alpha16_mixedval2500_v2_schemaheaderfix_evalstop_maxlen2048_epochs5",
+    "checkpoint_subdir": "checkpoints",
+    "allow_missing_adapter_root_before_training": true,
+    "deduplicate_by_adapter_sha256": true,
+    "require_root_matches_checkpoint": true
+  },
+  "evaluation": {
+    "max_length": 2048,
+    "packing": true,
+    "packing_strategy": "bfd",
+    "shuffle_before_packing": true,
+    "shuffle_after_packing": true,
+    "seed": 42,
+    "torch_dtype": "float16",
+    "attn_implementation": "flash_attention_2",
+    "batch_size": 1,
+    "logit_chunk_size": 128,
+    "progress_every": 25,
+    "result_dir": "results/diagnostics/qwen35_v2_posthoc_loss"
+  },
+  "expected_lora": {
+    "r": 8,
+    "lora_alpha": 16,
+    "lora_dropout": 0.05,
+    "bias": "none",
+    "task_type": "CAUSAL_LM",
+    "use_dora": false,
+    "target_modules": [
+      "down_proj",
+      "gate_proj",
+      "in_proj_a",
+      "in_proj_b",
+      "in_proj_qkv",
+      "in_proj_z",
+      "k_proj",
+      "o_proj",
+      "out_proj",
+      "q_proj",
+      "up_proj",
+      "v_proj"
+    ]
+  }
+}

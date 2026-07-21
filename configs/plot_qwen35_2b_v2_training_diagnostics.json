@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "purpose": "qwen35_v2_training_diagnostics",
+  "mode": "single",
+  "language": "de",
+  "image_formats": ["png", "pdf", "svg"],
+  "dpi": 300,
+  "overwrite": false,
+  "best_checkpoint_marker": "trainer_state.best_model_checkpoint",
+  "smoothing": {
+    "method": "ema",
+    "alpha": 0.15,
+    "replace_raw_values": false,
+    "cross_epoch_boundaries": false,
+    "cross_run_boundaries": false,
+    "extrapolate": false
+  },
+  "output_dir": "results/diagnostics/qwen35_v2_training_curves/qwen35_2b_r8_alpha16",
+  "parent_mainline_manifest": {
+    "path": "audits/qwen35_2b_9b_v2_mixedval_schemaheaderfix_mainline_manifest_20260712.json",
+    "sha256": "c54113b52f63d9a80e4d2626303cbff8fc26f34e341ab640f8a91eb789a136c6"
+  },
+  "plot_set": [
+    "01_training_and_fullchat_validation_loss",
+    "02_validation_loss_components_by_epoch",
+    "03_sql_loss_by_validation_source",
+    "04_sql_token_accuracy_by_validation_source",
+    "05_sql_source_generalization_gap",
+    "06_sql_perplexity_by_epoch"
+  ],
+  "runs": [
+    {
+      "run_name": "Qwen 3.5 2B r8/alpha16 v2",
+      "model_label": "Qwen 3.5 2B",
+      "model_size": "2B",
+      "model_id": "Qwen/Qwen3.5-2B-Base",
+      "llm": "qwen35_2b_base",
+      "seed": 42,
+      "adapter_root": "adapters/qwen35_2b_base/lora_v2_fullchat_old25k_r8_alpha16_mixedval2500_v2_schemaheaderfix_evalstop_maxlen2048_epochs5",
+      "training_config": {
+        "path": "configs/train_lora_qwen35_2b_base_v2_fullchat_old25k_r8_alpha16_mixedval2500_v2_schemaheaderfix_evalstop_maxlen2048_epochs5.json",
+        "sha256": "020662e3158f1d848e0c55976197b57a211b4e92fa96ebc6aca5dd453542b327"
+      },
+      "training_dataset": {
+        "label": "old25k",
+        "path": "data/sql_create_context/train_sft_qwen35_2b_base_full_chat_v1_clean_anti_overjoin_mix_spider_train_sqlcc_spider_schema_harmonized_complexity_enriched_25k_seed42_no_dev_overlap.jsonl",
+        "sha256": "c4b72a87d175b79895081a83f525997b71a230fd9088a7f8c59c40673fa0a40d"
+      },
+      "training_dataset_sha256": "c4b72a87d175b79895081a83f525997b71a230fd9088a7f8c59c40673fa0a40d",
+      "validation": {
+        "label": "MixedVal2500-v2 schemaheaderfix",
+        "path": "data/sql_create_context/val_sft_qwen35_full_chat_v2_mixed_trainothers700_sqlcc1800_no_train_no_dev_overlap_seed42_schemaheaderfix.jsonl",
+        "sha256": "711b23a6dfca40234a33e9aca66506eb33df197f69b6f466fd875854bdb89c08"
+      },
+      "posthoc": {
+        "result_dir": "results/diagnostics/qwen35_v2_posthoc_loss",
+        "result_glob": "qwen35_2b_v2_mixedval2500_v2_schemaheaderfix_step*_adapter-*_data-711b23a6dfca.json",
+        "config_path": "configs/eval_posthoc_loss_qwen35_2b_v2_mixedval2500_schemaheaderfix_all_checkpoints.json",
+        "config_sha256": "ee7fb905e3dd7c87325a1a0e0abc0ab3b87d6fce6f5f6bd665a16338206dbb5c",
+        "evaluator_path": "src/21_eval_qwen35_posthoc_loss_general.py",
+        "evaluator_sha256": "f89b9898d05441ed910f0cdb2acd123efad0814bc5c5a5a9373809b79a6cafa0"
+      },
+      "hyperparameters": {
+        "lora_r": 8,
+        "lora_alpha": 16,
+        "learning_rate": 0.0001,
+        "max_epochs": 5,
+        "loss": "full_chat"
+      }
+    }
+  ]
+}

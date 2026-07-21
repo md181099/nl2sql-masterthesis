@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "purpose": "model_training_diagnostics",
+  "mode": "single",
+  "language": "de",
+  "image_formats": ["png", "pdf", "svg"],
+  "dpi": 300,
+  "overwrite": false,
+  "best_checkpoint_marker": "trainer_state.best_model_checkpoint",
+  "smoothing": {
+    "method": "ema",
+    "alpha": 0.15,
+    "replace_raw_values": false,
+    "cross_epoch_boundaries": false,
+    "cross_run_boundaries": false,
+    "extrapolate": false
+  },
+  "output_dir": "results/diagnostics/llama32_v2_training_curves/llama32_3b_r8_alpha16",
+  "parent_mainline_manifest": {
+    "path": "audits/llama32_3b_instruct_full_pipeline_manifest_20260714.json",
+    "sha256": "d408a97ee1d8e01a237e9c320a72214b2053e12343738b26974030af4171e8ad"
+  },
+  "plot_set": [
+    "01_training_and_fullchat_validation_loss",
+    "02_validation_loss_components_by_epoch",
+    "03_sql_loss_by_validation_source",
+    "04_sql_token_accuracy_by_validation_source",
+    "05_sql_source_generalization_gap",
+    "06_sql_perplexity_by_epoch"
+  ],
+  "runs": [
+    {
+      "run_name": "Llama 3.2 3B Instruct r8/alpha16 v2",
+      "model_label": "Llama 3.2 3B Instruct",
+      "model_size": "3B",
+      "model_id": "meta-llama/Llama-3.2-3B-Instruct",
+      "llm": "llama32_3b_instruct",
+      "seed": 42,
+      "adapter_root": "adapters/llama32_3b_instruct/lora_v2_fullchat_old25k_r8_alpha16_mixedval2500_v2_schemaheaderfix_evalstop_maxlen2048_epochs5",
+      "training_config": {
+        "path": "configs/train_lora_llama32_3b_instruct_v2_fullchat_old25k_r8_alpha16_mixedval2500_v2_schemaheaderfix_evalstop_maxlen2048_epochs5.json",
+        "sha256": "81001f1a2b6287d589412bab658d50290fa1ba33c9e5557d44b9ff04a1c4282b"
+      },
+      "training_dataset": {
+        "label": "old25k native Llama chat",
+        "path": "data/sql_create_context/train_sft_llama32_3b_instruct_full_chat_v2_old25k_no_dev_overlap_seed42.jsonl",
+        "sha256": "14f151ba086d183a139579871762992f699a195bc9300214b544947f8d73edb8"
+      },
+      "training_dataset_sha256": "14f151ba086d183a139579871762992f699a195bc9300214b544947f8d73edb8",
+      "validation": {
+        "label": "MixedVal2500-v2 schemaheaderfix native Llama chat",
+        "path": "data/sql_create_context/val_sft_llama32_3b_instruct_full_chat_v2_mixed_trainothers700_sqlcc1800_no_train_no_dev_overlap_seed42_schemaheaderfix.jsonl",
+        "sha256": "917b0f16a45dc86ead42fea508595860b8700d6fb2c019c8125c3170d032bfb0"
+      },
+      "posthoc": {
+        "result_dir": "results/diagnostics/llama32_v2_posthoc_loss",
+        "result_glob": "llama32_3b_instruct_v2_mixedval2500_v2_schemaheaderfix_step*_adapter-*_data-917b0f16a45d.json",
+        "config_path": "configs/eval_posthoc_loss_llama32_3b_instruct_v2_mixedval2500_schemaheaderfix_all_checkpoints.json",
+        "config_sha256": "af8402c445e7b8d6fb80069f1242656743ef00fe0be67120a9f341cc9effb861",
+        "evaluator_path": "src/21_eval_qwen35_posthoc_loss_general.py",
+        "evaluator_sha256": "1354a2c34c7ed65368aec8e5bcbda63d0eb319b09a25abd440dc592c94184371"
+      },
+      "hyperparameters": {
+        "lora_r": 8,
+        "lora_alpha": 16,
+        "learning_rate": 0.0001,
+        "max_epochs": 5,
+        "loss": "full_chat"
+      }
+    }
+  ]
+}

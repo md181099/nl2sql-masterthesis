@@ -1,0 +1,16 @@
+python: 3.11.15 (main, Apr 17 2026, 00:00:00) [GCC 11.5.0 20240719 (Red Hat 11.5.0-5)]
+platform: Linux-6.1.168-203.330.amzn2023.x86_64-x86_64-with-glibc2.34
+torch: 2.12.1+cu130
+torch_cuda_runtime: 13.0
+cuda_available: True
+cuda_device_count: 1
+cuda_device_0: NVIDIA L40S
+cuda_capability_0: (8, 9)
+flash_attn: 2.8.3.post1
+transformers: 5.9.0
+peft: 0.18.1
+trl: 1.4.0
+accelerate: 1.12.0
+datasets: 4.8.5
+sentence_transformers: 5.2.2
+faiss: 1.14.3

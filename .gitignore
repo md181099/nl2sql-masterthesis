@@ -1,0 +1,77 @@
+# Secrets and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+.aws/
+.ssh/
+credentials
+
+# Python environments and caches
+.venv/
+.venv_flash/
+venv/
+env/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# IDE and operating-system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Models, adapters and checkpoints
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.ckpt
+checkpoint-*/
+
+# Keep only the explanatory files in these directories
+data/*
+!data/README.md
+
+adapters/*
+!adapters/README.md
+
+results/*
+!results/README.md
+
+# External or generated data
+*.sqlite
+*.sqlite3
+*.db
+*.faiss
+spider_data.zip
+
+# Logs and temporary files
+logs/
+*.log
+*.tmp
+*.temp
+*.part
+*.swp
+
+# Historical archives and private backups
+archive/
+backups/
+docs/
+reports/
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.7z
+
+# Hugging Face and experiment caches
+.cache/
+huggingface/
+wandb/

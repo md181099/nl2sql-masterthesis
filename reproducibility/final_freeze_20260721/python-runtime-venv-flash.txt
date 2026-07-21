@@ -1,0 +1,4 @@
+sys.executable: /home/ec2-user/nl2sql_testbench/.venv_flash/bin/python
+sys.version: 3.11.15 (main, Apr 17 2026, 00:00:00) [GCC 11.5.0 20240719 (Red Hat 11.5.0-5)]
+sys.prefix: /home/ec2-user/nl2sql_testbench/.venv_flash
+sys.base_prefix: /usr

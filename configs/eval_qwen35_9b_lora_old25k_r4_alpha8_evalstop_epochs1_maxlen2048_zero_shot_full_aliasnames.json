@@ -1,0 +1,19 @@
+{
+  "llm": "qwen35_9b_base",
+  "prompt_format": "qwen_sqlctx_chatml",
+  "system_prompt_variant": "sqlctx_anti_overjoin",
+  "extractor_mode": "sql_first_statement_only",
+  "generation_batch_size": 1,
+  "compute_perplexity": false,
+  "allow_overlap": false,
+  "same_db_only": false,
+  "testcases_path": "data/testcases_spider_dev_full.jsonl",
+  "traincases_path": "data/sql_create_context/train_mix_spider_train_sqlcc_spider_schema_harmonized_complexity_enriched_25k_seed42_no_dev_overlap.jsonl",
+  "max_test_samples": null,
+  "progress_log_every": 25,
+  "adapter": "lora_v1_fullchat_mix_spider_train_sqlcc_complexity_enriched_25k_seed42_flashattn2_qwen35_9b_no_overlap_r4_alpha8_evalval2500_earlystop_epochs1_maxlen2048_oomsafe",
+  "prompt_tuning": "none",
+  "k": 0,
+  "max_input_tokens": 1536,
+  "max_new_tokens": 256
+}

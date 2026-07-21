@@ -1,0 +1,75 @@
+{
+  "schema_version": 2,
+  "purpose": "posthoc_loss_diagnostic_checkpoint_discovery",
+  "model": {
+    "llm": "llama32_3b_instruct",
+    "label": "llama32_3b_instruct_v2",
+    "model_id": "meta-llama/Llama-3.2-3B-Instruct",
+    "tokenizer_id": "meta-llama/Llama-3.2-3B-Instruct",
+    "revision": "0cb88a4f764b7a12671c53f0838cd831a0843b95",
+    "local_files_only": true
+  },
+  "validation": {
+    "label": "mixedval2500_v2_schemaheaderfix",
+    "path": "data/sql_create_context/val_sft_llama32_3b_instruct_full_chat_v2_mixed_trainothers700_sqlcc1800_no_train_no_dev_overlap_seed42_schemaheaderfix.jsonl",
+    "sha256": "917b0f16a45dc86ead42fea508595860b8700d6fb2c019c8125c3170d032bfb0",
+    "chat_format": "llama32_instruct_native_chat",
+    "source_prefixes": {
+      "train_others": [
+        "SPIDER_TRAIN_OTHERS_"
+      ],
+      "sqlcc": [
+        "SCC_"
+      ]
+    },
+    "expected": {
+      "rows": 2500,
+      "source_rows": {
+        "train_others": 700,
+        "sqlcc": 1800
+      },
+      "sql_tokens": 80921,
+      "assistant_completion_tokens": 83421,
+      "max_tokens_with_eos": 848,
+      "packed_sequences": 442
+    }
+  },
+  "adapter_discovery": {
+    "adapter_root": "adapters/llama32_3b_instruct/lora_v2_fullchat_old25k_r8_alpha16_mixedval2500_v2_schemaheaderfix_evalstop_maxlen2048_epochs5",
+    "checkpoint_subdir": "checkpoints",
+    "allow_missing_adapter_root_before_training": true,
+    "deduplicate_by_adapter_sha256": true,
+    "require_root_matches_checkpoint": true
+  },
+  "evaluation": {
+    "max_length": 2048,
+    "packing": true,
+    "packing_strategy": "bfd",
+    "shuffle_before_packing": true,
+    "shuffle_after_packing": true,
+    "seed": 42,
+    "torch_dtype": "float16",
+    "attn_implementation": "flash_attention_2",
+    "batch_size": 1,
+    "logit_chunk_size": 128,
+    "progress_every": 25,
+    "result_dir": "results/diagnostics/llama32_v2_posthoc_loss"
+  },
+  "expected_lora": {
+    "r": 8,
+    "lora_alpha": 16,
+    "lora_dropout": 0.05,
+    "bias": "none",
+    "task_type": "CAUSAL_LM",
+    "use_dora": false,
+    "target_modules": [
+      "down_proj",
+      "gate_proj",
+      "k_proj",
+      "o_proj",
+      "q_proj",
+      "up_proj",
+      "v_proj"
+    ]
+  }
+}

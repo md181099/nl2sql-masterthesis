@@ -1,0 +1,1 @@
+pip 26.1.2 from /home/ec2-user/nl2sql_testbench/.venv_flash/lib64/python3.11/site-packages/pip (python 3.11)
