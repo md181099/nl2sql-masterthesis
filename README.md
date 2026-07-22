@@ -1,6 +1,6 @@
 # LLM NL2SQL Thesis Project
 
-Masterarbeitsprojekt zur Evaluation großer Sprachmodelle für die Erzeugung von SQL-Abfragen aus natürlichsprachlichen Fragen. Verglichen werden drei Modelllinien als Ausgangsmodell und als LoRA-v2-Variante auf dem Spider-Benchmark.
+Masterarbeitsprojekt zur Evaluation von lokalen Sprachmodellen für die Erzeugung von SQL-Abfragen aus natürlichsprachlichen Fragen. Verglichen werden drei Modelllinien als Ausgangsmodell und als LoRA-v2-Variante auf dem Spider-Benchmark.
 
 Der Versuchsaufbau umfasst Zero-Shot- und Few-Shot-Prompting, semantisches Retrieval, strukturbasiertes Reranking sowie eine ausführungsbasierte Evaluation gegen SQLite. Die autoritative Ergebnisbasis besteht aus 48 Hauptläufen und einer additiven Erweiterung mit 36 `k=3`-Läufen.
 
@@ -16,6 +16,7 @@ Der dokumentierte Host verwendet den Pfad `/home/ec2-user/nl2sql_testbench`. AWS
 
 Je nach lokalem Cache werden benötigt:
 
+- ein Hugging-Face Konto
 - ein Hugging-Face-Zugriffstoken außerhalb des Projektordners,
 - gegebenenfalls Zugriff auf gated Model-Repositories,
 - die drei verwendeten Modell-Snapshots,
