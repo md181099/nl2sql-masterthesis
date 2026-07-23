@@ -86,21 +86,17 @@ Kleine Manifeste und ausgewählte aufbereitete Dateien können im Repository ent
 
 ## 6. Finale LoRA-Adapter
 
-Die drei finalen LoRA-v2-Adapter sollen separat über Hugging Face bereitgestellt werden:
+Die drei finalen LoRA-v2-Adapter werden über separate Hugging-Face-Modellrepositories bereitgestellt.
 
-- Qwen 3.5 2B LoRA-v2
-- Llama 3.2 3B Instruct LoRA-v2
-- Qwen 3.5 9B LoRA-v2
+| Modelllinie | Hugging-Face-Repository | feste Commitrevision | SHA-256 von `adapter_model.safetensors` |
+|---|---|---|---|
+| Qwen 3.5 2B | `mehmet1899/qwen35-2b-nl2sql-lora` | `c6373ca847220b446d3d84859e914f89dc208375` | `6b92f120365d127d0c51a4c532953207d65cff611ac08cb7d573880be18223f3` |
+| Llama 3.2 3B Instruct | `mehmet1899/llama32-3b-instruct-nl2sql-lora` | `87afdd0c565da4570ebd129a4098f50719e0f76e` | `fcd4241f7a2e8e0388f13f0dd9517486cbee43fc3169c983a54e7b716c0e502d` |
+| Qwen 3.5 9B | `mehmet1899/qwen35-9b-nl2sql-lora` | `e136b9c25ede3ee82210875d0db774089509b676` | `dddf120df0703be5b9106ba17a628f2a9664e6ab5d1cc3ec1311c0a4a2b000f0` |
 
-Die endgültigen Hugging-Face-Repository-IDs und Commitrevisionen werden nach dem Upload ergänzt.
+Die Adapter wurden nach dem Upload jeweils erneut anhand der festen Commitrevision heruntergeladen. Die SHA-256-Hashes der heruntergeladenen Adaptergewichte stimmen bytegenau mit den finalen lokalen Root-Adaptern überein.
 
-Bekannte SHA-256-Hashes der Adaptergewichte:
-
-| Modelllinie | SHA-256 von `adapter_model.safetensors` |
-|---|---|
-| Qwen 3.5 2B | `6b92f120365d127d0c51a4c532953207d65cff611ac08cb7d573880be18223f3` |
-| Llama 3.2 3B Instruct | `fcd4241f7a2e8e0388f13f0dd9517486cbee43fc3169c983a54e7b716c0e502d` |
-| Qwen 3.5 9B | `dddf120df0703be5b9106ba17a628f2a9664e6ab5d1cc3ec1311c0a4a2b000f0` |
+Die Repositories sind zunächst privat angelegt. Für den Zugriff benötigt ein externer Nutzer entsprechende Hugging-Face-Berechtigungen. Vor der Übergabe an den Prüfer müssen die Repositories entweder freigegeben oder dem Prüfer explizit zugänglich gemacht werden.
 
 ## 7. Nicht über GitHub bereitgestellte große Artefakte
 
@@ -127,5 +123,4 @@ Vor dem finalen Release sind folgende Angaben zu vervollständigen:
 - genaue Spider-Downloadquelle und Archivhash
 - exakte Revision von `philschmid/sql-create-context-copy`
 - Hashes der verwendeten Quelldateien
-- Hugging-Face-IDs und Commitrevisionen der drei finalen Adapter
 - gegebenenfalls Download- oder Buildweg des finalen Retrievalindex
