@@ -213,13 +213,15 @@ data/retrieval_indexes/spider_train_no_dev_overlap_bge_large_en_v15
 
 Die finalen Adapter werden über folgende Hugging-Face-Repositories bereitgestellt:
 
-| Modelllinie | Adapter-Repository | feste Revision |
-|---|---|---|
-| Qwen 3.5 2B | `mehmet1899/qwen35-2b-nl2sql-lora` | `c6373ca847220b446d3d84859e914f89dc208375` |
-| Llama 3.2 3B Instruct | `mehmet1899/llama32-3b-instruct-nl2sql-lora` | `87afdd0c565da4570ebd129a4098f50719e0f76e` |
-| Qwen 3.5 9B | `mehmet1899/qwen35-9b-nl2sql-lora` | `e136b9c25ede3ee82210875d0db774089509b676` |
+| Modelllinie | Adapter-Repository | aktueller Dokumentations-Commit | verifizierte Adapterrevision |
+|---|---|---|---|
+| Qwen 3.5 2B | `mehmet1899/qwen35-2b-nl2sql-lora` | `ce6aade2c15ff2f0993bdde4a45e510f1dc273ca` | `c6373ca847220b446d3d84859e914f89dc208375` |
+| Llama 3.2 3B Instruct | `mehmet1899/llama32-3b-instruct-nl2sql-lora` | `e3c783a2ac67075111a387417cc4b02143f7eacb` | `87afdd0c565da4570ebd129a4098f50719e0f76e` |
+| Qwen 3.5 9B | `mehmet1899/qwen35-9b-nl2sql-lora` | `a2b763c01ca6e7c93c94f9cbc7a2727ee3303b58` | `e136b9c25ede3ee82210875d0db774089509b676` |
 
-Für die bestehende Evaluationspipeline werden die Adapter in die unter `Setup` dokumentierten lokalen Unterverzeichnisse von `adapters/` heruntergeladen. Die eindeutige Zuordnung zu den Modelllinien erfolgt zusätzlich über die drei finalen Trainingsconfigs und die Trainingsmetadaten.
+Der aktuelle Dokumentations-Commit bezeichnet den vollständigsten veröffentlichten Repository-Stand mit Model Card, Trainingsmetadaten und Prüfsummen. Die verifizierte Adapterrevision bezeichnet den separat heruntergeladenen und per SHA-256 bytegenau geprüften Adapterstand, auf den auch der Ladecode fest verweist.
+
+Für die bestehende Evaluationspipeline werden die Adapter anhand der verifizierten Adapterrevisionen in die unter `Setup` dokumentierten lokalen Unterverzeichnisse von `adapters/` heruntergeladen. Die eindeutige Zuordnung zu den Modelllinien erfolgt zusätzlich über die drei finalen Trainingsconfigs und die Trainingsmetadaten.
 
 ## Used Training Techniques
 
