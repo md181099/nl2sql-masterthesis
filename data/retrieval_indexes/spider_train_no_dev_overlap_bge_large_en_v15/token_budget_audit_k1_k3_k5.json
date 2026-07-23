@@ -1,0 +1,520 @@
+{
+  "max_input_tokens": 1536,
+  "summaries": {
+    "1": {
+      "k": 1,
+      "count": 1032,
+      "avg": 719.7286821705426,
+      "min": 414,
+      "p50": 612,
+      "p90": 1166,
+      "p95": 1272,
+      "p99": 1451,
+      "max": 2045,
+      "over_1536": 9,
+      "over_1536_pct": 0.872093023255814
+    },
+    "3": {
+      "k": 3,
+      "count": 1032,
+      "avg": 1415.1637596899225,
+      "min": 714,
+      "p50": 1210,
+      "p90": 2208,
+      "p95": 2526,
+      "p99": 2978,
+      "max": 3733,
+      "over_1536": 337,
+      "over_1536_pct": 32.65503875968992
+    },
+    "5": {
+      "k": 5,
+      "count": 1032,
+      "avg": 2114.3982558139537,
+      "min": 1112,
+      "p50": 1836,
+      "p90": 3182,
+      "p95": 3705,
+      "p99": 4601,
+      "max": 5378,
+      "over_1536": 744,
+      "over_1536_pct": 72.09302325581395
+    }
+  },
+  "over_1536_samples": {
+    "1": [
+      {
+        "id": "SPIDER_DEV_000448",
+        "db_id": "wta_1",
+        "tokens": 2045,
+        "retrieved_ids": [
+          "SPIDER_TRAIN_003647"
+        ],
+        "scores": [
+          0.6348264217376709
+        ],
+        "question": "What are the names of players who won in both 2013 and 2016?"
+      },
+      {
+        "id": "SPIDER_DEV_000463",
+        "db_id": "wta_1",
+        "tokens": 2041,
+        "retrieved_ids": [
+          "SPIDER_TRAIN_003648"
+        ],
+        "scores": [
+          0.7379351854324341
+        ],
+        "question": "Find the name and rank points of the winner who won the most times."
+      },
+      {
+        "id": "SPIDER_DEV_000774",
+        "db_id": "world_1",
+        "tokens": 1922,
+        "retrieved_ids": [
+          "SPIDER_TRAIN_003649"
+        ],
+        "scores": [
+          0.6214564442634583
+        ],
+        "question": "What are the African countries that have a  population less than any country in Asia?"
+      },
+      {
+        "id": "SPIDER_DEV_000775",
+        "db_id": "world_1",
+        "tokens": 1920,
+        "retrieved_ids": [
+          "SPIDER_TRAIN_003650"
+        ],
+        "scores": [
+          0.6096857786178589
+        ],
+        "question": "Which African countries have a smaller population than that of any country in Asia?"
+      },
+      {
+        "id": "SPIDER_DEV_000805",
+        "db_id": "world_1",
+        "tokens": 1919,
+        "retrieved_ids": [
+          "SPIDER_TRAIN_003649"
+        ],
+        "scores": [
+          0.7829726934432983
+        ],
+        "question": "Return the names of the 3 countries with the fewest people."
+      },
+      {
+        "id": "SPIDER_DEV_000924",
+        "db_id": "dog_kennels",
+        "tokens": 1652,
+        "retrieved_ids": [
+          "SPIDER_TRAIN_005139"
+        ],
+        "scores": [
+          0.6583481431007385
+        ],
+        "question": "Which dogs have not cost their owner more than 1000 for treatment ? List the dog names ."
+      },
+      {
+        "id": "SPIDER_DEV_000925",
+        "db_id": "dog_kennels",
+        "tokens": 1655,
+        "retrieved_ids": [
+          "SPIDER_TRAIN_005138"
+        ],
+        "scores": [
+          0.6405138969421387
+        ],
+        "question": "What are the names of the dogs for which the owner has not spend more than 1000 for treatment ?"
+      },
+      {
+        "id": "SPIDER_DEV_000958",
+        "db_id": "dog_kennels",
+        "tokens": 1619,
+        "retrieved_ids": [
+          "SPIDER_TRAIN_005093"
+        ],
+        "scores": [
+          0.6534185409545898
+        ],
+        "question": "What are the arriving date and the departing date of the dogs who have gone through a treatment?"
+      },
+      {
+        "id": "SPIDER_DEV_000965",
+        "db_id": "dog_kennels",
+        "tokens": 1613,
+        "retrieved_ids": [
+          "SPIDER_TRAIN_005092"
+        ],
+        "scores": [
+          0.7860785722732544
+        ],
+        "question": "List the arrival date and the departure date for all the dogs."
+      }
+    ],
+    "3": [
+      {
+        "id": "SPIDER_DEV_000038",
+        "db_id": "concert_singer",
+        "tokens": 1719,
+        "retrieved_ids": [
+          "SPIDER_TRAIN_003606",
+          "SPIDER_TRAIN_003596",
+          "SPIDER_TRAIN_002160"
+        ],
+        "scores": [
+          0.6091208457946777,
+          0.6040618419647217,
+          0.6032189130783081
+        ],
+        "question": "What are the names of the singers who performed in a concert in 2014?"
+      },
+      {
+        "id": "SPIDER_DEV_000049",
+        "db_id": "pets_1",
+        "tokens": 1898,
+        "retrieved_ids": [
+          "SPIDER_TRAIN_002412",
+          "SPIDER_TRAIN_004745",
+          "SPIDER_TRAIN_004782"
+        ],
+        "scores": [
+          0.6879745721817017,
+          0.6799178719520569,
+          0.6759430170059204
+        ],
+        "question": "Find the maximum weight for each type of pet. List the maximum weight and pet type."
+      },
+      {
+        "id": "SPIDER_DEV_000050",
+        "db_id": "pets_1",
+        "tokens": 2417,
+        "retrieved_ids": [
+          "SPIDER_TRAIN_004782",
+          "SPIDER_TRAIN_004745",
+          "SPIDER_TRAIN_004746"
+        ],
+        "scores": [
+          0.66566002368927,
+          0.6465882658958435,
+          0.6431862711906433
+        ],
+        "question": "List the maximum weight and type for each type of pet."
+      },
+      {
+        "id": "SPIDER_DEV_000055",
+        "db_id": "pets_1",
+        "tokens": 2449,
+        "retrieved_ids": [
+          "SPIDER_TRAIN_004714",
+          "SPIDER_TRAIN_004713",
+          "SPIDER_TRAIN_003939"
+        ],
+        "scores": [
+          0.8142699599266052,
+          0.7868632078170776,
+          0.7771888971328735
+        ],
+        "question": "Find the number of distinct type of pets."
+      },
+      {
+        "id": "SPIDER_DEV_000070",
+        "db_id": "pets_1",
+        "tokens": 1549,
+        "retrieved_ids": [
+          "SPIDER_TRAIN_002111",
+          "SPIDER_TRAIN_005360",
+          "SPIDER_TRAIN_000475"
+        ],
+        "scores": [
+          0.6199889779090881,
+          0.6154093742370605,
+          0.6047250032424927
+        ],
+        "question": "What is the id and weight of every pet who is older than 1?"
+      },
+      {
+        "id": "SPIDER_DEV_000096",
+        "db_id": "car_1",
+        "tokens": 1759,
+        "retrieved_ids": [
+          "SPIDER_TRAIN_000325",
+          "SPIDER_TRAIN_002165",
+          "SPIDER_TRAIN_001024"
+        ],
+        "scores": [
+          0.681617259979248,
+          0.6691122651100159,
+          0.6379958987236023
+        ],
+        "question": "What is the model of the car with the smallest amount of horsepower?"
+      },
+      {
+        "id": "SPIDER_DEV_000102",
+        "db_id": "car_1",
+        "tokens": 1564,
+        "retrieved_ids": [
+          "SPIDER_TRAIN_006256",
+          "SPIDER_TRAIN_006257",
+          "SPIDER_TRAIN_002994"
+        ],
+        "scores": [
+          0.5827600955963135,
+          0.5770341157913208,
+          0.5751253962516785
+        ],
+        "question": "What is the maker of the carr produced in the earliest year and what year was it?"
+      },
+      {
+        "id": "SPIDER_DEV_000103",
+        "db_id": "car_1",
+        "tokens": 1904,
+        "retrieved_ids": [
+          "SPIDER_TRAIN_001023",
+          "SPIDER_TRAIN_006907",
+          "SPIDER_TRAIN_003149"
+        ],
+        "scores": [
+          0.6266857385635376,
+          0.6238561868667603,
+          0.6092574000358582
+        ],
+        "question": "Which distinct car models are the produced after 1980?"
+      },
+      {
+        "id": "SPIDER_DEV_000111",
+        "db_id": "car_1",
+        "tokens": 2492,
+        "retrieved_ids": [
+          "SPIDER_TRAIN_000641",
+          "SPIDER_TRAIN_002226",
+          "SPIDER_TRAIN_002225"
+        ],
+        "scores": [
+          0.5176553726196289,
+          0.5159723162651062,
+          0.5085216760635376
+        ],
+        "question": "What is the accelerate of the car make amc hornet sportabout (sw)?"
+      },
+      {
+        "id": "SPIDER_DEV_000112",
+        "db_id": "car_1",
+        "tokens": 2188,
+        "retrieved_ids": [
+          "SPIDER_TRAIN_000641",
+          "SPIDER_TRAIN_002220",
+          "SPIDER_TRAIN_000620"
+        ],
+        "scores": [
+          0.5425524115562439,
+          0.5230824947357178,
+          0.5192688703536987
+        ],
+        "question": "How much does the car accelerate that makes amc hornet sportabout (sw)?"
+      }
+    ],
+    "5": [
+      {
+        "id": "SPIDER_DEV_000000",
+        "db_id": "concert_singer",
+        "tokens": 1997,
+        "retrieved_ids": [
+          "SPIDER_TRAIN_001649",
+          "SPIDER_TRAIN_005250",
+          "SPIDER_TRAIN_005251",
+          "SPIDER_TRAIN_005180",
+          "SPIDER_TRAIN_005228"
+        ],
+        "scores": [
+          0.8141859769821167,
+          0.8000138401985168,
+          0.7782545685768127,
+          0.7763735055923462,
+          0.7683557271957397
+        ],
+        "question": "How many singers do we have?"
+      },
+      {
+        "id": "SPIDER_DEV_000001",
+        "db_id": "concert_singer",
+        "tokens": 2011,
+        "retrieved_ids": [
+          "SPIDER_TRAIN_005250",
+          "SPIDER_TRAIN_005180",
+          "SPIDER_TRAIN_005228",
+          "SPIDER_TRAIN_005251",
+          "SPIDER_TRAIN_006143"
+        ],
+        "scores": [
+          0.7667990326881409,
+          0.7530443668365479,
+          0.7457301616668701,
+          0.7447149753570557,
+          0.7242308855056763
+        ],
+        "question": "What is the total number of singers?"
+      },
+      {
+        "id": "SPIDER_DEV_000007",
+        "db_id": "concert_singer",
+        "tokens": 1543,
+        "retrieved_ids": [
+          "SPIDER_TRAIN_003542",
+          "SPIDER_TRAIN_004413",
+          "SPIDER_TRAIN_003541",
+          "SPIDER_TRAIN_004412",
+          "SPIDER_TRAIN_003612"
+        ],
+        "scores": [
+          0.6763012409210205,
+          0.6754969358444214,
+          0.6747685670852661,
+          0.6687330007553101,
+          0.6635411977767944
+        ],
+        "question": "What are the names and release years for all the songs of the youngest singer?"
+      },
+      {
+        "id": "SPIDER_DEV_000009",
+        "db_id": "concert_singer",
+        "tokens": 1542,
+        "retrieved_ids": [
+          "SPIDER_TRAIN_006146",
+          "SPIDER_TRAIN_001637",
+          "SPIDER_TRAIN_003538",
+          "SPIDER_TRAIN_001652",
+          "SPIDER_TRAIN_006172"
+        ],
+        "scores": [
+          0.7270169258117676,
+          0.7061631679534912,
+          0.7060039043426514,
+          0.6996324062347412,
+          0.6991726160049438
+        ],
+        "question": "What are  the different countries with singers above age 20?"
+      },
+      {
+        "id": "SPIDER_DEV_000011",
+        "db_id": "concert_singer",
+        "tokens": 1975,
+        "retrieved_ids": [
+          "SPIDER_TRAIN_001052",
+          "SPIDER_TRAIN_005251",
+          "SPIDER_TRAIN_005180",
+          "SPIDER_TRAIN_003606",
+          "SPIDER_TRAIN_005250"
+        ],
+        "scores": [
+          0.7457047700881958,
+          0.7320308685302734,
+          0.7316325902938843,
+          0.7290850877761841,
+          0.7276414632797241
+        ],
+        "question": "How many singers are from each country?"
+      },
+      {
+        "id": "SPIDER_DEV_000012",
+        "db_id": "concert_singer",
+        "tokens": 1577,
+        "retrieved_ids": [
+          "SPIDER_TRAIN_006172",
+          "SPIDER_TRAIN_006145",
+          "SPIDER_TRAIN_003533",
+          "SPIDER_TRAIN_003605",
+          "SPIDER_TRAIN_006178"
+        ],
+        "scores": [
+          0.8139716982841492,
+          0.7958435416221619,
+          0.7577831745147705,
+          0.7397066354751587,
+          0.7373048067092896
+        ],
+        "question": "List all song names by singers above the average age."
+      },
+      {
+        "id": "SPIDER_DEV_000013",
+        "db_id": "concert_singer",
+        "tokens": 1678,
+        "retrieved_ids": [
+          "SPIDER_TRAIN_006172",
+          "SPIDER_TRAIN_006178",
+          "SPIDER_TRAIN_006179",
+          "SPIDER_TRAIN_006171",
+          "SPIDER_TRAIN_005241"
+        ],
+        "scores": [
+          0.7576277256011963,
+          0.724356472492218,
+          0.7104842662811279,
+          0.6989116668701172,
+          0.6953590512275696
+        ],
+        "question": "What are all the song names by singers who are older than average?"
+      },
+      {
+        "id": "SPIDER_DEV_000014",
+        "db_id": "concert_singer",
+        "tokens": 1720,
+        "retrieved_ids": [
+          "SPIDER_TRAIN_005606",
+          "SPIDER_TRAIN_005610",
+          "SPIDER_TRAIN_005607",
+          "SPIDER_TRAIN_005605",
+          "SPIDER_TRAIN_005608"
+        ],
+        "scores": [
+          0.7690117955207825,
+          0.754214882850647,
+          0.7327247858047485,
+          0.7161145806312561,
+          0.7049448490142822
+        ],
+        "question": "Show location and name for all stadiums with a capacity between 5000 and 10000."
+      },
+      {
+        "id": "SPIDER_DEV_000015",
+        "db_id": "concert_singer",
+        "tokens": 1774,
+        "retrieved_ids": [
+          "SPIDER_TRAIN_006601",
+          "SPIDER_TRAIN_000128",
+          "SPIDER_TRAIN_000178",
+          "SPIDER_TRAIN_000177",
+          "SPIDER_TRAIN_006599"
+        ],
+        "scores": [
+          0.7448415756225586,
+          0.7407709360122681,
+          0.7318881750106812,
+          0.7171163558959961,
+          0.7169802784919739
+        ],
+        "question": "What are the locations and names of all stations with capacity between 5000 and 10000?"
+      },
+      {
+        "id": "SPIDER_DEV_000018",
+        "db_id": "concert_singer",
+        "tokens": 2992,
+        "retrieved_ids": [
+          "SPIDER_TRAIN_005606",
+          "SPIDER_TRAIN_001278",
+          "SPIDER_TRAIN_005620",
+          "SPIDER_TRAIN_002817",
+          "SPIDER_TRAIN_003641"
+        ],
+        "scores": [
+          0.7897474765777588,
+          0.7832112312316895,
+          0.7829732894897461,
+          0.7359076738357544,
+          0.7268497943878174
+        ],
+        "question": "What is the name and capacity for the stadium with highest average attendance?"
+      }
+    ]
+  }
+}

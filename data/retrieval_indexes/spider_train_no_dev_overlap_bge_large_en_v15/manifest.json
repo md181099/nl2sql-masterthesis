@@ -1,0 +1,509 @@
+{
+  "apply_query_prefix_to_documents": true,
+  "apply_query_prefix_to_queries": true,
+  "bge_query_format": {
+    "prefix": "Represent this sentence for searching relevant passages: ",
+    "rationale": "BAAI/bge-large-en-v1.5 recommends an instruction prefix for retrieval queries. Because this pipeline performs question-to-question retrieval, the same prefix is applied to indexed Spider-Train questions and Dev queries to avoid a query/document embedding distribution mismatch.",
+    "uses_recommended_prefix": true
+  },
+  "build_stats": {
+    "counts": {
+      "dev_reference_rows": 1032,
+      "input_rows": 7000,
+      "removed_dev_pair_overlap": 2,
+      "removed_dev_question_or_sql_overlap": 9,
+      "removed_dev_question_overlap": 5,
+      "removed_dev_sql_overlap": 6,
+      "removed_duplicate_question_sql": 31,
+      "written_rows": 6960
+    },
+    "sample_removed_duplicate_examples": [
+      {
+        "db_id": "college_2",
+        "question": "Find the name of the courses that do not have any prerequisite?",
+        "source_idx": 1420,
+        "sql": "SELECT title FROM course WHERE course_id NOT IN (SELECT course_id FROM prereq);"
+      },
+      {
+        "db_id": "customers_and_invoices",
+        "question": "Count the number of customers.",
+        "source_idx": 1574,
+        "sql": "SELECT count(*) FROM Customers;"
+      },
+      {
+        "db_id": "epinions_1",
+        "question": "Find the names of users who did not leave any review.",
+        "source_idx": 1716,
+        "sql": "SELECT name FROM useracct WHERE u_id NOT IN (SELECT u_id FROM review);"
+      },
+      {
+        "db_id": "small_bank_1",
+        "question": "Count the number of accounts.",
+        "source_idx": 1779,
+        "sql": "SELECT count(*) FROM accounts;"
+      },
+      {
+        "db_id": "formula_1",
+        "question": "What is the id and last name of the driver who participated in the most races after 2010?",
+        "source_idx": 2212,
+        "sql": "SELECT T1.driverid ,  T1.surname FROM drivers AS T1 JOIN results AS T2 ON T1.driverid  =  T2.driverid JOIN races AS T3 ON T2.raceid = T3.raceid WHERE T3.year > 2010 GROUP BY T1.driverid ORDER BY count(*) DESC LIMIT 1;"
+      },
+      {
+        "db_id": "csu_1",
+        "question": "Find the count of universities whose campus fee is greater than the average campus fee.",
+        "source_idx": 2342,
+        "sql": "SELECT count(*) FROM csu_fees WHERE campusfee  >  (SELECT avg(campusfee) FROM csu_fees);"
+      },
+      {
+        "db_id": "movie_1",
+        "question": "How many movies were made before 2000?",
+        "source_idx": 2439,
+        "sql": "SELECT count(*) FROM Movie WHERE YEAR  <  2000;"
+      },
+      {
+        "db_id": "storm_record",
+        "question": "How many regions do we have?",
+        "source_idx": 2690,
+        "sql": "SELECT count(*) FROM region;"
+      },
+      {
+        "db_id": "storm_record",
+        "question": "Count the number of regions.",
+        "source_idx": 2691,
+        "sql": "SELECT count(*) FROM region;"
+      },
+      {
+        "db_id": "hr_1",
+        "question": "display all the information about the department Marketing.",
+        "source_idx": 3483,
+        "sql": "SELECT * FROM  departments WHERE department_name  =  'Marketing';"
+      }
+    ],
+    "sample_removed_overlap_examples": [
+      {
+        "db_id": "flight_1",
+        "pair_overlap": false,
+        "question": "How many flights do we have?",
+        "question_overlap": true,
+        "source_idx": 381,
+        "sql": "SELECT count(*) FROM Flight;",
+        "sql_overlap": false
+      },
+      {
+        "db_id": "match_season",
+        "pair_overlap": false,
+        "question": "How many players are from each country?",
+        "question_overlap": true,
+        "source_idx": 1093,
+        "sql": "SELECT Country_name ,  COUNT(*) FROM country AS T1 JOIN match_season AS T2 ON T1.Country_id  =  T2.Country GROUP BY T1.Country_name;",
+        "sql_overlap": false
+      },
+      {
+        "db_id": "riding_club",
+        "pair_overlap": false,
+        "question": "How many players are there?",
+        "question_overlap": true,
+        "source_idx": 1719,
+        "sql": "SELECT count(*) FROM player;",
+        "sql_overlap": false
+      },
+      {
+        "db_id": "e_learning",
+        "pair_overlap": false,
+        "question": "How many courses are there in total?",
+        "question_overlap": false,
+        "source_idx": 3768,
+        "sql": "SELECT count(*) FROM COURSES;",
+        "sql_overlap": true
+      },
+      {
+        "db_id": "e_learning",
+        "pair_overlap": false,
+        "question": "Find the total number of courses offered.",
+        "question_overlap": false,
+        "source_idx": 3769,
+        "sql": "SELECT count(*) FROM COURSES;",
+        "sql_overlap": true
+      },
+      {
+        "db_id": "cre_Docs_and_Epenses",
+        "pair_overlap": false,
+        "question": "Show the number of documents.",
+        "question_overlap": false,
+        "source_idx": 6399,
+        "sql": "SELECT count(*) FROM Documents;",
+        "sql_overlap": true
+      },
+      {
+        "db_id": "cre_Docs_and_Epenses",
+        "pair_overlap": true,
+        "question": "Count the number of documents.",
+        "question_overlap": true,
+        "source_idx": 6400,
+        "sql": "SELECT count(*) FROM Documents;",
+        "sql_overlap": true
+      },
+      {
+        "db_id": "flight_4",
+        "pair_overlap": false,
+        "question": "How many airlines are there?",
+        "question_overlap": false,
+        "source_idx": 6807,
+        "sql": "SELECT count(*) FROM airlines;",
+        "sql_overlap": true
+      },
+      {
+        "db_id": "flight_4",
+        "pair_overlap": true,
+        "question": "What is the total number of airlines?",
+        "question_overlap": true,
+        "source_idx": 6808,
+        "sql": "SELECT count(*) FROM airlines;",
+        "sql_overlap": true
+      }
+    ]
+  },
+  "cosine_similarity": true,
+  "created_at": "2026-06-25T22:55:12.358460+00:00",
+  "embedding_dim": 1024,
+  "embedding_model": "BAAI/bge-large-en-v1.5",
+  "embedding_text": "question",
+  "index_type": "faiss.IndexFlatIP",
+  "leakage_audit": {
+    "dev_reference_count": 1032,
+    "dev_retrieval_same_id_hits": 0,
+    "dev_retrieval_same_question_hits": 0,
+    "dev_retrieval_same_question_sql_pair_hits": 0,
+    "dev_retrieval_same_sql_hits": 0,
+    "index_contains_spider_dev_ids": 0,
+    "near_duplicate_train_question_samples": [
+      {
+        "id_a": "SPIDER_TRAIN_000020",
+        "id_b": "SPIDER_TRAIN_000021",
+        "question_a": "What are the hosts of competitions whose theme is not \"Aliens\"?",
+        "question_b": "Return the hosts of competitions for which the theme is not Aliens?",
+        "score": 0.9459778666496277,
+        "sql_a": "SELECT Hosts FROM farm_competition WHERE Theme !=  'Aliens';",
+        "sql_b": "SELECT Hosts FROM farm_competition WHERE Theme !=  'Aliens';"
+      },
+      {
+        "id_a": "SPIDER_TRAIN_000021",
+        "id_b": "SPIDER_TRAIN_000020",
+        "question_a": "Return the hosts of competitions for which the theme is not Aliens?",
+        "question_b": "What are the hosts of competitions whose theme is not \"Aliens\"?",
+        "score": 0.9459778666496277,
+        "sql_a": "SELECT Hosts FROM farm_competition WHERE Theme !=  'Aliens';",
+        "sql_b": "SELECT Hosts FROM farm_competition WHERE Theme !=  'Aliens';"
+      },
+      {
+        "id_a": "SPIDER_TRAIN_000022",
+        "id_b": "SPIDER_TRAIN_000023",
+        "question_a": "What are the themes of farm competitions sorted by year in ascending order?",
+        "question_b": "Return the themes of farm competitions, sorted by year ascending.",
+        "score": 0.9425017833709717,
+        "sql_a": "SELECT Theme FROM farm_competition ORDER BY YEAR ASC;",
+        "sql_b": "SELECT Theme FROM farm_competition ORDER BY YEAR ASC;"
+      },
+      {
+        "id_a": "SPIDER_TRAIN_000023",
+        "id_b": "SPIDER_TRAIN_000022",
+        "question_a": "Return the themes of farm competitions, sorted by year ascending.",
+        "question_b": "What are the themes of farm competitions sorted by year in ascending order?",
+        "score": 0.9425017833709717,
+        "sql_a": "SELECT Theme FROM farm_competition ORDER BY YEAR ASC;",
+        "sql_b": "SELECT Theme FROM farm_competition ORDER BY YEAR ASC;"
+      },
+      {
+        "id_a": "SPIDER_TRAIN_000024",
+        "id_b": "SPIDER_TRAIN_000025",
+        "question_a": "What is the average number of working horses of farms with more than 5000 total number of horses?",
+        "question_b": "Give the average number of working horses on farms with more than 5000 total horses.",
+        "score": 0.9555764198303223,
+        "sql_a": "SELECT avg(Working_Horses) FROM farm WHERE Total_Horses  >  5000;",
+        "sql_b": "SELECT avg(Working_Horses) FROM farm WHERE Total_Horses  >  5000;"
+      },
+      {
+        "id_a": "SPIDER_TRAIN_000025",
+        "id_b": "SPIDER_TRAIN_000024",
+        "question_a": "Give the average number of working horses on farms with more than 5000 total horses.",
+        "question_b": "What is the average number of working horses of farms with more than 5000 total number of horses?",
+        "score": 0.9555764198303223,
+        "sql_a": "SELECT avg(Working_Horses) FROM farm WHERE Total_Horses  >  5000;",
+        "sql_b": "SELECT avg(Working_Horses) FROM farm WHERE Total_Horses  >  5000;"
+      },
+      {
+        "id_a": "SPIDER_TRAIN_000026",
+        "id_b": "SPIDER_TRAIN_000027",
+        "question_a": "What are the maximum and minimum number of cows across all farms.",
+        "question_b": "Return the maximum and minimum number of cows across all farms.",
+        "score": 0.9497550129890442,
+        "sql_a": "SELECT max(Cows) ,  min(Cows) FROM farm;",
+        "sql_b": "SELECT max(Cows) ,  min(Cows) FROM farm;"
+      },
+      {
+        "id_a": "SPIDER_TRAIN_000027",
+        "id_b": "SPIDER_TRAIN_000026",
+        "question_a": "Return the maximum and minimum number of cows across all farms.",
+        "question_b": "What are the maximum and minimum number of cows across all farms.",
+        "score": 0.9497550129890442,
+        "sql_a": "SELECT max(Cows) ,  min(Cows) FROM farm;",
+        "sql_b": "SELECT max(Cows) ,  min(Cows) FROM farm;"
+      },
+      {
+        "id_a": "SPIDER_TRAIN_000030",
+        "id_b": "SPIDER_TRAIN_000031",
+        "question_a": "List official names of cities in descending order of population.",
+        "question_b": "What are the official names of cities, ordered descending by population?",
+        "score": 0.9262052774429321,
+        "sql_a": "SELECT Official_Name FROM city ORDER BY Population DESC;",
+        "sql_b": "SELECT Official_Name FROM city ORDER BY Population DESC;"
+      },
+      {
+        "id_a": "SPIDER_TRAIN_000031",
+        "id_b": "SPIDER_TRAIN_000030",
+        "question_a": "What are the official names of cities, ordered descending by population?",
+        "question_b": "List official names of cities in descending order of population.",
+        "score": 0.9262052774429321,
+        "sql_a": "SELECT Official_Name FROM city ORDER BY Population DESC;",
+        "sql_b": "SELECT Official_Name FROM city ORDER BY Population DESC;"
+      },
+      {
+        "id_a": "SPIDER_TRAIN_000034",
+        "id_b": "SPIDER_TRAIN_000035",
+        "question_a": "Show the years and the official names of the host cities of competitions.",
+        "question_b": "Give the years and official names of the cities of each competition.",
+        "score": 0.9377270936965942,
+        "sql_a": "SELECT T2.Year ,  T1.Official_Name FROM city AS T1 JOIN farm_competition AS T2 ON T1.City_ID  =  T2.Host_city_ID;",
+        "sql_b": "SELECT T2.Year ,  T1.Official_Name FROM city AS T1 JOIN farm_competition AS T2 ON T1.City_ID  =  T2.Host_city_ID;"
+      },
+      {
+        "id_a": "SPIDER_TRAIN_000035",
+        "id_b": "SPIDER_TRAIN_000034",
+        "question_a": "Give the years and official names of the cities of each competition.",
+        "question_b": "Show the years and the official names of the host cities of competitions.",
+        "score": 0.9377270936965942,
+        "sql_a": "SELECT T2.Year ,  T1.Official_Name FROM city AS T1 JOIN farm_competition AS T2 ON T1.City_ID  =  T2.Host_city_ID;",
+        "sql_b": "SELECT T2.Year ,  T1.Official_Name FROM city AS T1 JOIN farm_competition AS T2 ON T1.City_ID  =  T2.Host_city_ID;"
+      },
+      {
+        "id_a": "SPIDER_TRAIN_000036",
+        "id_b": "SPIDER_TRAIN_000037",
+        "question_a": "Show the official names of the cities that have hosted more than one competition.",
+        "question_b": "What are the official names of cities that have hosted more than one competition?",
+        "score": 0.9501405954360962,
+        "sql_a": "SELECT T1.Official_Name FROM city AS T1 JOIN farm_competition AS T2 ON T1.City_ID  =  T2.Host_city_ID GROUP BY T2.Host_city_ID HAVING COUNT(*)  >  1;",
+        "sql_b": "SELECT T1.Official_Name FROM city AS T1 JOIN farm_competition AS T2 ON T1.City_ID  =  T2.Host_city_ID GROUP BY T2.Host_city_ID HAVING COUNT(*)  >  1;"
+      },
+      {
+        "id_a": "SPIDER_TRAIN_000037",
+        "id_b": "SPIDER_TRAIN_000036",
+        "question_a": "What are the official names of cities that have hosted more than one competition?",
+        "question_b": "Show the official names of the cities that have hosted more than one competition.",
+        "score": 0.9501405954360962,
+        "sql_a": "SELECT T1.Official_Name FROM city AS T1 JOIN farm_competition AS T2 ON T1.City_ID  =  T2.Host_city_ID GROUP BY T2.Host_city_ID HAVING COUNT(*)  >  1;",
+        "sql_b": "SELECT T1.Official_Name FROM city AS T1 JOIN farm_competition AS T2 ON T1.City_ID  =  T2.Host_city_ID GROUP BY T2.Host_city_ID HAVING COUNT(*)  >  1;"
+      },
+      {
+        "id_a": "SPIDER_TRAIN_000038",
+        "id_b": "SPIDER_TRAIN_000039",
+        "question_a": "Show the status of the city that has hosted the greatest number of competitions.",
+        "question_b": "What is the status of the city that has hosted the most competitions?",
+        "score": 0.9087250828742981,
+        "sql_a": "SELECT T1.Status FROM city AS T1 JOIN farm_competition AS T2 ON T1.City_ID  =  T2.Host_city_ID GROUP BY T2.Host_city_ID ORDER BY COUNT(*) DESC LIMIT 1;",
+        "sql_b": "SELECT T1.Status FROM city AS T1 JOIN farm_competition AS T2 ON T1.City_ID  =  T2.Host_city_ID GROUP BY T2.Host_city_ID ORDER BY COUNT(*) DESC LIMIT 1;"
+      },
+      {
+        "id_a": "SPIDER_TRAIN_000039",
+        "id_b": "SPIDER_TRAIN_000038",
+        "question_a": "What is the status of the city that has hosted the most competitions?",
+        "question_b": "Show the status of the city that has hosted the greatest number of competitions.",
+        "score": 0.9087250828742981,
+        "sql_a": "SELECT T1.Status FROM city AS T1 JOIN farm_competition AS T2 ON T1.City_ID  =  T2.Host_city_ID GROUP BY T2.Host_city_ID ORDER BY COUNT(*) DESC LIMIT 1;",
+        "sql_b": "SELECT T1.Status FROM city AS T1 JOIN farm_competition AS T2 ON T1.City_ID  =  T2.Host_city_ID GROUP BY T2.Host_city_ID ORDER BY COUNT(*) DESC LIMIT 1;"
+      },
+      {
+        "id_a": "SPIDER_TRAIN_000040",
+        "id_b": "SPIDER_TRAIN_000041",
+        "question_a": "Please show the themes of competitions with host cities having populations larger than 1000.",
+        "question_b": "What are the themes of competitions that have corresponding host cities with more than 1000 residents?",
+        "score": 0.9269450902938843,
+        "sql_a": "SELECT T2.Theme FROM city AS T1 JOIN farm_competition AS T2 ON T1.City_ID  =  T2.Host_city_ID WHERE T1.Population  >  1000;",
+        "sql_b": "SELECT T2.Theme FROM city AS T1 JOIN farm_competition AS T2 ON T1.City_ID  =  T2.Host_city_ID WHERE T1.Population  >  1000;"
+      },
+      {
+        "id_a": "SPIDER_TRAIN_000041",
+        "id_b": "SPIDER_TRAIN_000040",
+        "question_a": "What are the themes of competitions that have corresponding host cities with more than 1000 residents?",
+        "question_b": "Please show the themes of competitions with host cities having populations larger than 1000.",
+        "score": 0.9269450902938843,
+        "sql_a": "SELECT T2.Theme FROM city AS T1 JOIN farm_competition AS T2 ON T1.City_ID  =  T2.Host_city_ID WHERE T1.Population  >  1000;",
+        "sql_b": "SELECT T2.Theme FROM city AS T1 JOIN farm_competition AS T2 ON T1.City_ID  =  T2.Host_city_ID WHERE T1.Population  >  1000;"
+      },
+      {
+        "id_a": "SPIDER_TRAIN_000046",
+        "id_b": "SPIDER_TRAIN_000047",
+        "question_a": "List the most common type of Status across cities.",
+        "question_b": "What is the most common status across all cities?",
+        "score": 0.9154504537582397,
+        "sql_a": "SELECT Status FROM city GROUP BY Status ORDER BY COUNT(*) DESC LIMIT 1;",
+        "sql_b": "SELECT Status FROM city GROUP BY Status ORDER BY COUNT(*) DESC LIMIT 1;"
+      },
+      {
+        "id_a": "SPIDER_TRAIN_000047",
+        "id_b": "SPIDER_TRAIN_000046",
+        "question_a": "What is the most common status across all cities?",
+        "question_b": "List the most common type of Status across cities.",
+        "score": 0.9154504537582397,
+        "sql_a": "SELECT Status FROM city GROUP BY Status ORDER BY COUNT(*) DESC LIMIT 1;",
+        "sql_b": "SELECT Status FROM city GROUP BY Status ORDER BY COUNT(*) DESC LIMIT 1;"
+      }
+    ],
+    "near_duplicate_train_questions": {
+      ">=0.85": 5707,
+      ">=0.90": 3745,
+      ">=0.95": 876
+    },
+    "retrieval_example_count": 6960,
+    "retrieval_source_only_spider_train": true,
+    "status": "PASS"
+  },
+  "method": "sentence_transformer_faiss",
+  "model_cache_status": {
+    "after_load": {
+      "cached_files": {
+        "config.json": "/home/ec2-user/.cache/huggingface/hub/models--BAAI--bge-large-en-v1.5/snapshots/d4aa6901d3a41ba39fb536a557fa166f842b0e09/config.json",
+        "modules.json": "/home/ec2-user/.cache/huggingface/hub/models--BAAI--bge-large-en-v1.5/snapshots/d4aa6901d3a41ba39fb536a557fa166f842b0e09/modules.json",
+        "sentence_bert_config.json": "/home/ec2-user/.cache/huggingface/hub/models--BAAI--bge-large-en-v1.5/snapshots/d4aa6901d3a41ba39fb536a557fa166f842b0e09/sentence_bert_config.json"
+      },
+      "missing_or_uncached_files": [],
+      "status": "cached"
+    },
+    "before_load": {
+      "cached_files": {},
+      "missing_or_uncached_files": [
+        "config.json",
+        "modules.json",
+        "sentence_bert_config.json"
+      ],
+      "status": "not_cached_or_partial"
+    },
+    "download_status": "downloaded_or_cache_populated_during_load"
+  },
+  "normalize": true,
+  "normalize_embeddings": true,
+  "output_paths": {
+    "audit_markdown": "/home/ec2-user/nl2sql_testbench/results/audits/audit_dynamic_fewshot_bge_large_final_readiness_20260625.md",
+    "index": "/home/ec2-user/nl2sql_testbench/data/retrieval_indexes/spider_train_no_dev_overlap_bge_large_en_v15/index.faiss",
+    "manifest": "/home/ec2-user/nl2sql_testbench/data/retrieval_indexes/spider_train_no_dev_overlap_bge_large_en_v15/manifest.json",
+    "metadata": "/home/ec2-user/nl2sql_testbench/data/retrieval_indexes/spider_train_no_dev_overlap_bge_large_en_v15/metadata.jsonl",
+    "topk_audit_jsonl": "/home/ec2-user/nl2sql_testbench/data/retrieval_indexes/spider_train_no_dev_overlap_bge_large_en_v15/dev_top5_retrieval_audit.jsonl"
+  },
+  "package_versions": {
+    "faiss-cpu": "1.14.3",
+    "faiss-gpu": null,
+    "numpy": "2.4.2",
+    "scikit-learn": "1.8.0",
+    "sentence-transformers": "5.2.2",
+    "torch": "2.12.1"
+  },
+  "query_prefix": "Represent this sentence for searching relevant passages: ",
+  "retrieval_quality": {
+    "all_retrieved_similarity": {
+      "count": 5160,
+      "max": 0.9715067148208618,
+      "mean": 0.6952078796749891,
+      "min": 0.44390732049942017,
+      "p25": 0.6433121412992477,
+      "p50": 0.6970095634460449,
+      "p75": 0.7458091378211975,
+      "p90": 0.7884230613708496,
+      "p95": 0.8135177791118622,
+      "p99": 0.8652087408304214
+    },
+    "audit_k": 5,
+    "dev_rows": 1032,
+    "top1_similarity": {
+      "count": 1032,
+      "max": 0.9715067148208618,
+      "mean": 0.7217922799809035,
+      "min": 0.4871830940246582,
+      "p25": 0.6673081815242767,
+      "p50": 0.7211853265762329,
+      "p75": 0.7732062190771103,
+      "p90": 0.8206029772758484,
+      "p95": 0.8528956025838852,
+      "p99": 0.9023914337158201
+    },
+    "top1_structure_match_rates": {
+      "same_aggregation": {
+        "count": 829,
+        "percent": 80.33
+      },
+      "same_group_by": {
+        "count": 792,
+        "percent": 76.74
+      },
+      "same_having": {
+        "count": 957,
+        "percent": 92.73
+      },
+      "same_join_bucket": {
+        "count": 599,
+        "percent": 58.04
+      },
+      "same_nested_select": {
+        "count": 943,
+        "percent": 91.38
+      },
+      "same_order_by": {
+        "count": 887,
+        "percent": 85.95
+      }
+    },
+    "top3_similarity": {
+      "count": 3096,
+      "max": 0.9715067148208618,
+      "mean": 0.7054402460404299,
+      "min": 0.45088109374046326,
+      "p25": 0.6526516675949097,
+      "p50": 0.7068996727466583,
+      "p75": 0.7561396062374115,
+      "p90": 0.8007262647151947,
+      "p95": 0.8259379267692566,
+      "p99": 0.881496873497963
+    },
+    "top3_structure_coverage_rates": {
+      "contains_same_aggregation": {
+        "count": 971,
+        "percent": 94.09
+      },
+      "contains_same_group_by": {
+        "count": 967,
+        "percent": 93.7
+      },
+      "contains_same_having": {
+        "count": 999,
+        "percent": 96.8
+      },
+      "contains_same_join_bucket": {
+        "count": 790,
+        "percent": 76.55
+      },
+      "contains_same_nested_select": {
+        "count": 984,
+        "percent": 95.35
+      },
+      "contains_same_order_by": {
+        "count": 996,
+        "percent": 96.51
+      }
+    }
+  },
+  "script": "src/08_build_spider_train_dynamic_fewshot_index.py",
+  "seed": 42,
+  "source_paths": {
+    "dev_reference_path": "/home/ec2-user/nl2sql_testbench/data/testcases_spider_dev_full.jsonl",
+    "spider_dir": "/home/ec2-user/nl2sql_testbench/data/spider/spider_data",
+    "spider_train_path": "/home/ec2-user/nl2sql_testbench/data/spider/spider_data/train_spider.json"
+  }
+}

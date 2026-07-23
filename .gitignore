@@ -371,3 +371,25 @@ data/sql_create_context/*
 !results/k3_extension_20260717/retrieval_traces/run_k3_qwen9b_lora_v2_top3_gate085_maxin4352_sqltimeout900v3_20260718_134627_retrieval_traces.jsonl
 !results/k3_extension_20260717/retrieval_traces/run_k3_qwen9b_lora_v2_top3_maxin4352_sqltimeout900v3_20260718_120344_retrieval_traces.jsonl
 # End published authoritative experiment artifacts
+
+# Authoritative reproducibility data
+# Keep the general data/* exclusion above. Only the final, explicitly
+# enumerated evaluation, static few-shot and retrieval artifacts are included.
+
+!data/testcases_spider_dev_full.jsonl
+
+!data/fewshot_static/
+data/fewshot_static/*
+!data/fewshot_static/static_fewshot_k1_full_schema_seed42_spider_train_no_dev_overlap.jsonl
+!data/fewshot_static/static_fewshot_k1_full_schema_seed42_spider_train_no_dev_overlap_manifest.json
+
+!data/spider/
+data/spider/*
+!data/spider/spider_data/
+data/spider/spider_data/*
+!data/spider/spider_data/tables.json
+
+!data/retrieval_indexes/
+data/retrieval_indexes/*
+!data/retrieval_indexes/spider_train_no_dev_overlap_bge_large_en_v15/
+!data/retrieval_indexes/spider_train_no_dev_overlap_bge_large_en_v15/**

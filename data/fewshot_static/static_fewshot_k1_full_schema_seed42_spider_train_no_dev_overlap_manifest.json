@@ -1,0 +1,22 @@
+{
+  "created_for": "qwen35_9b_old25k_epochs1_eval_config_preparation",
+  "date": "2026-07-10",
+  "dynamic_static_same_underlying_pool": true,
+  "global_fixed_demo_for_all_cases": true,
+  "selected_db_id": "theme_gallery",
+  "selected_gold_sql": "SELECT count(*) FROM artist WHERE age  >  46 AND year_join  >  1990;",
+  "selected_id": "SPIDER_TRAIN_001657",
+  "selected_index_position": 1653,
+  "selected_question": "How many artists are above age 46 and joined after 1990?",
+  "selected_source_dataset": "spider_train",
+  "selected_source_split": "train_spider",
+  "selection_algorithm": "random.Random(42).shuffle(range(n)); first index selected",
+  "selection_random": true,
+  "selection_seed": 42,
+  "source_pool": "data/retrieval_indexes/spider_train_no_dev_overlap_bge_large_en_v15/metadata.jsonl",
+  "source_pool_rows": 6960,
+  "static_resource": "data/fewshot_static/static_fewshot_k1_full_schema_seed42_spider_train_no_dev_overlap.jsonl",
+  "static_resource_rows": 1,
+  "static_resource_sha256": "7c4735d7ba31ebd448cd0b94fd4c63a80c3e50f115d0fdd39e652ae0f1be1857",
+  "underlying_pool_note": "Dynamic uses the FAISS index built from the same metadata pool; static freezes one global demo sampled from that pool."
+}

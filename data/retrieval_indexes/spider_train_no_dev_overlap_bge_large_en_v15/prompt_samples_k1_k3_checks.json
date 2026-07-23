@@ -1,0 +1,262 @@
+[
+  {
+    "k": 1,
+    "id": "SPIDER_DEV_000000",
+    "db_id": "concert_singer",
+    "tokens": 530,
+    "retrieved_ids": [
+      "SPIDER_TRAIN_001649"
+    ],
+    "checks": {
+      "system_prompt_once": true,
+      "user_prompt_once": true,
+      "assistant_generation_marker_once": true,
+      "examples_have_expected_count": true,
+      "has_now_solve": true,
+      "has_database_schema": true,
+      "has_rules": true,
+      "has_question": true,
+      "has_sql_labels": true,
+      "no_create_table": true,
+      "no_think": true,
+      "no_target_answer_before_assistant": true,
+      "fewshot_not_chatml_separate": true,
+      "all_passed": true
+    }
+  },
+  {
+    "k": 1,
+    "id": "SPIDER_DEV_000001",
+    "db_id": "concert_singer",
+    "tokens": 719,
+    "retrieved_ids": [
+      "SPIDER_TRAIN_005250"
+    ],
+    "checks": {
+      "system_prompt_once": true,
+      "user_prompt_once": true,
+      "assistant_generation_marker_once": true,
+      "examples_have_expected_count": true,
+      "has_now_solve": true,
+      "has_database_schema": true,
+      "has_rules": true,
+      "has_question": true,
+      "has_sql_labels": true,
+      "no_create_table": true,
+      "no_think": true,
+      "no_target_answer_before_assistant": true,
+      "fewshot_not_chatml_separate": true,
+      "all_passed": true
+    }
+  },
+  {
+    "k": 1,
+    "id": "SPIDER_DEV_000002",
+    "db_id": "concert_singer",
+    "tokens": 562,
+    "retrieved_ids": [
+      "SPIDER_TRAIN_001651"
+    ],
+    "checks": {
+      "system_prompt_once": true,
+      "user_prompt_once": true,
+      "assistant_generation_marker_once": true,
+      "examples_have_expected_count": true,
+      "has_now_solve": true,
+      "has_database_schema": true,
+      "has_rules": true,
+      "has_question": true,
+      "has_sql_labels": true,
+      "no_create_table": true,
+      "no_think": true,
+      "no_target_answer_before_assistant": true,
+      "fewshot_not_chatml_separate": true,
+      "all_passed": true
+    }
+  },
+  {
+    "k": 1,
+    "id": "SPIDER_DEV_000003",
+    "db_id": "concert_singer",
+    "tokens": 573,
+    "retrieved_ids": [
+      "SPIDER_TRAIN_006178"
+    ],
+    "checks": {
+      "system_prompt_once": true,
+      "user_prompt_once": true,
+      "assistant_generation_marker_once": true,
+      "examples_have_expected_count": true,
+      "has_now_solve": true,
+      "has_database_schema": true,
+      "has_rules": true,
+      "has_question": true,
+      "has_sql_labels": true,
+      "no_create_table": true,
+      "no_think": true,
+      "no_target_answer_before_assistant": true,
+      "fewshot_not_chatml_separate": true,
+      "all_passed": true
+    }
+  },
+  {
+    "k": 1,
+    "id": "SPIDER_DEV_000004",
+    "db_id": "concert_singer",
+    "tokens": 554,
+    "retrieved_ids": [
+      "SPIDER_TRAIN_006146"
+    ],
+    "checks": {
+      "system_prompt_once": true,
+      "user_prompt_once": true,
+      "assistant_generation_marker_once": true,
+      "examples_have_expected_count": true,
+      "has_now_solve": true,
+      "has_database_schema": true,
+      "has_rules": true,
+      "has_question": true,
+      "has_sql_labels": true,
+      "no_create_table": true,
+      "no_think": true,
+      "no_target_answer_before_assistant": true,
+      "fewshot_not_chatml_separate": true,
+      "all_passed": true
+    }
+  },
+  {
+    "k": 3,
+    "id": "SPIDER_DEV_000000",
+    "db_id": "concert_singer",
+    "tokens": 1280,
+    "retrieved_ids": [
+      "SPIDER_TRAIN_001649",
+      "SPIDER_TRAIN_005250",
+      "SPIDER_TRAIN_005251"
+    ],
+    "checks": {
+      "system_prompt_once": true,
+      "user_prompt_once": true,
+      "assistant_generation_marker_once": true,
+      "examples_have_expected_count": true,
+      "has_now_solve": true,
+      "has_database_schema": true,
+      "has_rules": true,
+      "has_question": true,
+      "has_sql_labels": true,
+      "no_create_table": true,
+      "no_think": true,
+      "no_target_answer_before_assistant": true,
+      "fewshot_not_chatml_separate": true,
+      "all_passed": true
+    }
+  },
+  {
+    "k": 3,
+    "id": "SPIDER_DEV_000001",
+    "db_id": "concert_singer",
+    "tokens": 1436,
+    "retrieved_ids": [
+      "SPIDER_TRAIN_005250",
+      "SPIDER_TRAIN_005180",
+      "SPIDER_TRAIN_005228"
+    ],
+    "checks": {
+      "system_prompt_once": true,
+      "user_prompt_once": true,
+      "assistant_generation_marker_once": true,
+      "examples_have_expected_count": true,
+      "has_now_solve": true,
+      "has_database_schema": true,
+      "has_rules": true,
+      "has_question": true,
+      "has_sql_labels": true,
+      "no_create_table": true,
+      "no_think": true,
+      "no_target_answer_before_assistant": true,
+      "fewshot_not_chatml_separate": true,
+      "all_passed": true
+    }
+  },
+  {
+    "k": 3,
+    "id": "SPIDER_DEV_000002",
+    "db_id": "concert_singer",
+    "tokens": 965,
+    "retrieved_ids": [
+      "SPIDER_TRAIN_001651",
+      "SPIDER_TRAIN_006145",
+      "SPIDER_TRAIN_006146"
+    ],
+    "checks": {
+      "system_prompt_once": true,
+      "user_prompt_once": true,
+      "assistant_generation_marker_once": true,
+      "examples_have_expected_count": true,
+      "has_now_solve": true,
+      "has_database_schema": true,
+      "has_rules": true,
+      "has_question": true,
+      "has_sql_labels": true,
+      "no_create_table": true,
+      "no_think": true,
+      "no_target_answer_before_assistant": true,
+      "fewshot_not_chatml_separate": true,
+      "all_passed": true
+    }
+  },
+  {
+    "k": 3,
+    "id": "SPIDER_DEV_000003",
+    "db_id": "concert_singer",
+    "tokens": 927,
+    "retrieved_ids": [
+      "SPIDER_TRAIN_006178",
+      "SPIDER_TRAIN_006146",
+      "SPIDER_TRAIN_004437"
+    ],
+    "checks": {
+      "system_prompt_once": true,
+      "user_prompt_once": true,
+      "assistant_generation_marker_once": true,
+      "examples_have_expected_count": true,
+      "has_now_solve": true,
+      "has_database_schema": true,
+      "has_rules": true,
+      "has_question": true,
+      "has_sql_labels": true,
+      "no_create_table": true,
+      "no_think": true,
+      "no_target_answer_before_assistant": true,
+      "fewshot_not_chatml_separate": true,
+      "all_passed": true
+    }
+  },
+  {
+    "k": 3,
+    "id": "SPIDER_DEV_000004",
+    "db_id": "concert_singer",
+    "tokens": 963,
+    "retrieved_ids": [
+      "SPIDER_TRAIN_006146",
+      "SPIDER_TRAIN_001659",
+      "SPIDER_TRAIN_006145"
+    ],
+    "checks": {
+      "system_prompt_once": true,
+      "user_prompt_once": true,
+      "assistant_generation_marker_once": true,
+      "examples_have_expected_count": true,
+      "has_now_solve": true,
+      "has_database_schema": true,
+      "has_rules": true,
+      "has_question": true,
+      "has_sql_labels": true,
+      "no_create_table": true,
+      "no_think": true,
+      "no_target_answer_before_assistant": true,
+      "fewshot_not_chatml_separate": true,
+      "all_passed": true
+    }
+  }
+]

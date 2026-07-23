@@ -36,6 +36,48 @@ Erforderlich sind:
 
 Die Evaluation verwendet lokale SQLite-Dateien und benötigt keinen separaten Datenbankserver.
 
+### Spider SQLite Databases
+
+Die vollständigen Spider-SQLite-Datenbanken werden aufgrund ihres Umfangs nicht in diesem Repository bereitgestellt. Sie müssen separat über die offizielle Spider-Projektseite heruntergeladen werden:
+
+```text
+https://yale-lily.github.io/spider
+```
+
+Auf der Projektseite ist bis zum Abschnitt **Getting Started** zu scrollen. Dort kann der Datensatz über den Link **Spider Dataset** heruntergeladen werden.
+
+Nach dem Download und Entpacken müssen die SQLite-Datenbanken unter folgendem relativen Pfad liegen:
+
+```text
+data/spider/spider_data/database/
+```
+
+Die erwartete Struktur lautet beispielsweise:
+
+```text
+data/spider/spider_data/database/
+├── academic/
+│   └── academic.sqlite
+├── activity_1/
+│   └── activity_1.sqlite
+└── ...
+```
+
+Die autoritative Evaluation erwartet insgesamt 166 SQLite-Dateien. Die Installation kann folgendermaßen geprüft werden:
+
+```bash
+find data/spider/spider_data/database -type f -name '*.sqlite' | wc -l
+```
+
+Erwartete Ausgabe:
+
+```text
+166
+```
+
+Die Datei `data/testcases_spider_dev_full.jsonl` verweist auf diese lokale Datenbankstruktur.
+
+
 ### Python Environment
 
 Die autoritative Umgebung verwendet Python 3.11.15. Im Repository wird für die virtuelle Umgebung standardmäßig der relative Pfad `.venv_flash` verwendet.
