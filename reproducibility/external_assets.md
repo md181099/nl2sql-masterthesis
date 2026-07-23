@@ -184,3 +184,13 @@ Vor dem finalen Release sind folgende Angaben noch zu vervollständigen, soweit 
 - Archivhash des separat heruntergeladenen Spider-Datensatzarchivs
 - exakte Revision von `philschmid/sql-create-context-copy`
 - ergänzende Hashes ursprünglicher Quelldateien
+
+## 9. Datenherkunft und Lizenzen
+
+Die Herkunft, Lizenzbedingungen und projektspezifischen Transformationen der enthaltenen Spider- und SQL-Create-Context-Artefakte sind in folgender Datei dokumentiert:
+
+```text
+DATA_LICENSES.md
+```
+
+Dabei wird zwischen Originaldaten, materialisierten Trainings- und Evaluationsdateien sowie selbst erzeugten Retrieval-, Audit- und Manifestartefakten unterschieden.

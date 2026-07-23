@@ -204,6 +204,16 @@ Autoritative Läufe werden über Config, Modellrolle, Ergebnis-CSV, Metadata-Sum
 audits/derived/generation_evaluation_authoritative_run_matrix_20260718.csv
 ```
 
+## Data Provenance and Licenses
+
+Herkunft, Lizenzstatus und projektspezifische Transformationen der veröffentlichten Spider- und SQL-Create-Context-Artefakte sind separat dokumentiert:
+
+```text
+DATA_LICENSES.md
+```
+
+Die Originaldaten behalten ihre jeweiligen Lizenz- und Attributionsbedingungen. Projektspezifische Materialisierung, Mischung, Schemaaufbereitung und Retrievalindizierung ersetzen diese Bedingungen nicht.
+
 ## Used Data
 
 ### Spider
