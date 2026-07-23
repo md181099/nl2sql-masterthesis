@@ -98,7 +98,7 @@ Der aktuelle Dokumentations-Commit enthält jeweils den vollständigsten veröff
 
 Zusätzlich wurden auch die aktuellen Dokumentations-Commits erneut vollständig heruntergeladen. Die darin enthaltenen Adaptergewichte stimmen anhand ihrer SHA-256-Hashes bytegenau mit den finalen lokalen Root-Adaptern und den verifizierten Adapterrevisionen überein.
 
-Die Repositories sind zunächst privat angelegt. Für den Zugriff benötigt ein externer Nutzer entsprechende Hugging-Face-Berechtigungen. Vor der Übergabe an den Prüfer müssen die Repositories entweder freigegeben oder dem Prüfer explizit zugänglich gemacht werden.
+Die drei Adapter-Repositories sind öffentlich lesbar. Der anonyme Zugriff wurde für alle drei Repositories über die öffentliche Hugging-Face-API sowie durch den direkten Download der jeweiligen `README.md` mit HTTP-Status 200 verifiziert. Schreibzugriff auf die Original-Repositories verbleibt beim Eigentümer.
 
 ## 7. Nicht über GitHub bereitgestellte große Artefakte
 

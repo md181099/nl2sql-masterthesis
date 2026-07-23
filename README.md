@@ -23,7 +23,7 @@ Benötigt werden:
 - die drei veröffentlichten LoRA-v2-Adapter,
 - das Retrievalmodell `BAAI/bge-large-en-v1.5`.
 
-Die vollständigen Basismodellgewichte liegen nicht im Projektverzeichnis. Die finalen LoRA-v2-Adapter werden über separate Hugging-Face-Repositories bereitgestellt. Die Adapter-Repositories sind derzeit privat; externe Nutzer benötigen daher eine entsprechende Freigabe.
+Die vollständigen Basismodellgewichte liegen nicht im Projektverzeichnis. Die finalen LoRA-v2-Adapter werden über separate öffentliche Hugging-Face-Repositories bereitgestellt und können ohne Zugriffstoken heruntergeladen werden.
 
 ### Spider and SQLite
 
@@ -439,7 +439,7 @@ Ausführliche technische, methodische und statistische Nachweise befinden sich u
 - Spider Dev ausschließlich zur Evaluation, nicht zur Checkpointauswahl verwenden.
 - Basismodellgewichte liegen außerhalb des Projektverzeichnisses und müssen anhand der dokumentierten Modell-IDs und Revisionen bereitgestellt werden.
 - Die drei finalen LoRA-v2-Adapter liegen auf Hugging Face und müssen für die bestehende Evaluationspipeline in die dokumentierten lokalen Adapterverzeichnisse heruntergeladen werden.
-- Die Hugging-Face-Adapter-Repositories sind derzeit privat. Vor der Übergabe an einen externen Prüfer muss der Zugriff freigegeben oder die Sichtbarkeit angepasst werden.
+- Die drei Hugging-Face-Adapter-Repositories sind öffentlich lesbar. Änderungen an den Original-Repositories können weiterhin nur durch den Eigentümer vorgenommen werden.
 - Keine AWS-Schlüssel, Hugging-Face-Tokens, SSH-Schlüssel oder andere Secrets im Projekt speichern.
 - Historische Configs und Adapter nicht mit den finalen LoRA-v2- und Runinventaren vermischen.
 - Vollständige Nachweise, Hashes und Einschränkungen stehen unter `audits/` und `reproducibility/`.
