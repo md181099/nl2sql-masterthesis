@@ -10,19 +10,20 @@ Der Versuchsaufbau umfasst Zero-Shot- und Few-Shot-Prompting, semantisches Retri
 
 Die finale Umgebung wurde unter Linux auf einer NVIDIA L40S mit CUDA 13.0 ausgeführt. Training und vollständige Evaluation benötigen eine CUDA-fähige NVIDIA-GPU sowie ausreichend GPU-, Arbeits- und Plattenspeicher.
 
-Der dokumentierte Host verwendet den Pfad `/home/ec2-user/nl2sql_testbench`. AWS-spezifische Bereitstellung, Netzwerk- und Zugriffsverwaltung sind nicht Bestandteil dieses Repositories und müssen extern eingerichtet werden.
+Die autoritativen Experimente wurden ursprünglich unter `/home/ec2-user/nl2sql_testbench` ausgeführt. Dieser Pfad dokumentiert ausschließlich die ursprüngliche Ausführungsumgebung. Das Repository kann für die Reproduktion an einem beliebigen lokalen Pfad abgelegt werden. AWS-spezifische Bereitstellung, Netzwerk- und Zugriffsverwaltung sind nicht Bestandteil dieses Repositories.
 
 ### Hugging Face Account
 
-Je nach lokalem Cache werden benötigt:
+Benötigt werden:
 
-- ein Hugging-Face Konto
+- ein Hugging-Face-Konto,
 - ein Hugging-Face-Zugriffstoken außerhalb des Projektordners,
 - gegebenenfalls Zugriff auf gated Model-Repositories,
-- die drei verwendeten Modell-Snapshots,
+- die drei verwendeten Basismodelle,
+- die drei veröffentlichten LoRA-v2-Adapter,
 - das Retrievalmodell `BAAI/bge-large-en-v1.5`.
 
-Die vollständigen Basismodellgewichte liegen nicht im Projektverzeichnis.
+Die vollständigen Basismodellgewichte liegen nicht im Projektverzeichnis. Die finalen LoRA-v2-Adapter werden über separate Hugging-Face-Repositories bereitgestellt. Die Adapter-Repositories sind derzeit privat; externe Nutzer benötigen daher eine entsprechende Freigabe.
 
 ### Spider and SQLite
 
@@ -37,11 +38,11 @@ Die Evaluation verwendet lokale SQLite-Dateien und benötigt keinen separaten Da
 
 ### Python Environment
 
-Die autoritative Umgebung ist:
+Die autoritative Umgebung verwendet Python 3.11.15. Im Repository wird für die virtuelle Umgebung standardmäßig der relative Pfad `.venv_flash` verwendet.
 
 ```text
 Python 3.11.15
-/home/ec2-user/nl2sql_testbench/.venv_flash
+<repository-root>/.venv_flash
 ```
 
 Der datierte Paketfreeze liegt unter:
@@ -52,12 +53,22 @@ reproducibility/final_freeze_20260721/pip-freeze-venv-flash-20260721.txt
 
 ## Setup
 
-Projektverzeichnis öffnen und Umgebung aktivieren:
+Projektverzeichnis öffnen und eine virtuelle Umgebung aktivieren:
 
 ```bash
-cd /home/ec2-user/nl2sql_testbench
+cd /path/to/nl2sql-masterthesis
+python3.11 -m venv .venv_flash
 source .venv_flash/bin/activate
+python -m pip install --upgrade pip
 ```
+
+Der vollständige Paketfreeze der autoritativen Umgebung befindet sich unter:
+
+```text
+reproducibility/final_freeze_20260721/pip-freeze-venv-flash-20260721.txt
+```
+
+Der Freeze dokumentiert die tatsächlich verwendete Umgebung. Abhängig von Betriebssystem, CUDA-Version und GPU kann insbesondere für PyTorch und FlashAttention eine plattformspezifische Installation erforderlich sein.
 
 Python und Paketkonsistenz prüfen:
 
@@ -90,13 +101,43 @@ test -f data/retrieval_indexes/spider_train_no_dev_overlap_bge_large_en_v15/inde
 wc -l data/testcases_spider_dev_full.jsonl
 ```
 
-Vorhandene Modell-Snapshots prüfen:
+Hugging-Face-Anmeldung prüfen:
 
 ```bash
-test -d /home/ec2-user/.cache/huggingface/hub/models--Qwen--Qwen3.5-2B-Base/snapshots/b1485b2fa6dfa1287294f269f5fb618e03d52d7c
-test -d /home/ec2-user/.cache/huggingface/hub/models--meta-llama--Llama-3.2-3B-Instruct/snapshots/0cb88a4f764b7a12671c53f0838cd831a0843b95
-test -d /home/ec2-user/.cache/huggingface/hub/models--Qwen--Qwen3.5-9B-Base/snapshots/68c46c4b3498877f3ef123c856ecfde50c39f404
+hf auth login
+hf auth whoami
 ```
+
+Die autoritativen Basismodellrevisionen können mit der Hugging-Face-CLI bereitgestellt werden:
+
+```bash
+hf download Qwen/Qwen3.5-2B-Base \
+  --revision b1485b2fa6dfa1287294f269f5fb618e03d52d7c
+
+hf download meta-llama/Llama-3.2-3B-Instruct \
+  --revision 0cb88a4f764b7a12671c53f0838cd831a0843b95
+
+hf download Qwen/Qwen3.5-9B-Base \
+  --revision 68c46c4b3498877f3ef123c856ecfde50c39f404
+```
+
+Die finalen LoRA-v2-Adapter werden in die von den bestehenden Evaluationsconfigs erwarteten lokalen Verzeichnisse geladen:
+
+```bash
+hf download mehmet1899/qwen35-2b-nl2sql-lora \
+  --revision c6373ca847220b446d3d84859e914f89dc208375 \
+  --local-dir adapters/qwen35_2b_base/lora_v2_fullchat_old25k_r8_alpha16_mixedval2500_v2_schemaheaderfix_evalstop_maxlen2048_epochs5
+
+hf download mehmet1899/llama32-3b-instruct-nl2sql-lora \
+  --revision 87afdd0c565da4570ebd129a4098f50719e0f76e \
+  --local-dir adapters/llama32_3b_instruct/lora_v2_fullchat_old25k_r8_alpha16_mixedval2500_v2_schemaheaderfix_evalstop_maxlen2048_epochs5
+
+hf download mehmet1899/qwen35-9b-nl2sql-lora \
+  --revision e136b9c25ede3ee82210875d0db774089509b676 \
+  --local-dir adapters/qwen35_9b_base/lora_v2_fullchat_old25k_r8_alpha16_mixedval2500_v2_schemaheaderfix_evalstop_maxlen2048_epochs5
+```
+
+Die Adapter wurden nach dem Upload von den festgelegten Revisionen heruntergeladen und anhand der dokumentierten SHA-256-Hashes bytegenau verifiziert.
 
 > `requirements.txt` ist historisch. `requirements_current.txt` dokumentiert die zweite Umgebung `.venv`. Für die finale Umgebung `.venv_flash` ist ausschließlich der datierte Freeze unter `reproducibility/final_freeze_20260721/` maßgeblich.
 
@@ -170,7 +211,15 @@ data/retrieval_indexes/spider_train_no_dev_overlap_bge_large_en_v15
 | Qwen 3.5 9B Base | `Qwen/Qwen3.5-9B-Base` | Base und LoRA v2 | größere Qwen-Modelllinie |
 | BGE Large EN v1.5 | `BAAI/bge-large-en-v1.5` | Retriever | semantische Demonstrationsauswahl |
 
-Die finalen Adapter liegen unter `adapters/`. Ihre eindeutige Zuordnung erfolgt über die drei finalen Trainingsconfigs und die Trainingsmetadaten.
+Die finalen Adapter werden über folgende Hugging-Face-Repositories bereitgestellt:
+
+| Modelllinie | Adapter-Repository | feste Revision |
+|---|---|---|
+| Qwen 3.5 2B | `mehmet1899/qwen35-2b-nl2sql-lora` | `c6373ca847220b446d3d84859e914f89dc208375` |
+| Llama 3.2 3B Instruct | `mehmet1899/llama32-3b-instruct-nl2sql-lora` | `87afdd0c565da4570ebd129a4098f50719e0f76e` |
+| Qwen 3.5 9B | `mehmet1899/qwen35-9b-nl2sql-lora` | `e136b9c25ede3ee82210875d0db774089509b676` |
+
+Für die bestehende Evaluationspipeline werden die Adapter in die unter `Setup` dokumentierten lokalen Unterverzeichnisse von `adapters/` heruntergeladen. Die eindeutige Zuordnung zu den Modelllinien erfolgt zusätzlich über die drei finalen Trainingsconfigs und die Trainingsmetadaten.
 
 ## Used Training Techniques
 
@@ -386,7 +435,9 @@ Ausführliche technische, methodische und statistische Nachweise befinden sich u
 - Autoritative Daten, Adapter, Ergebnisse, Summaries und Traces niemals überschreiben.
 - Training, vollständige Evaluation und Indexaufbau sind GPU- beziehungsweise rechenintensiv.
 - Spider Dev ausschließlich zur Evaluation, nicht zur Checkpointauswahl verwenden.
-- Basismodellgewichte liegen außerhalb des Projektverzeichnisses und müssen gegebenenfalls erneut bereitgestellt werden.
+- Basismodellgewichte liegen außerhalb des Projektverzeichnisses und müssen anhand der dokumentierten Modell-IDs und Revisionen bereitgestellt werden.
+- Die drei finalen LoRA-v2-Adapter liegen auf Hugging Face und müssen für die bestehende Evaluationspipeline in die dokumentierten lokalen Adapterverzeichnisse heruntergeladen werden.
+- Die Hugging-Face-Adapter-Repositories sind derzeit privat. Vor der Übergabe an einen externen Prüfer muss der Zugriff freigegeben oder die Sichtbarkeit angepasst werden.
 - Keine AWS-Schlüssel, Hugging-Face-Tokens, SSH-Schlüssel oder andere Secrets im Projekt speichern.
 - Historische Configs und Adapter nicht mit den finalen LoRA-v2- und Runinventaren vermischen.
 - Vollständige Nachweise, Hashes und Einschränkungen stehen unter `audits/` und `reproducibility/`.
