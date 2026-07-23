@@ -2,7 +2,7 @@
 
 Dieses Repository enthält den produktiven Quellcode, die relevanten Konfigurationen, Tests, Reproduzierbarkeitsinformationen sowie zentrale Ergebnis- und Run-Manifeste der Masterarbeit.
 
-Große Basismodelle, vollständige Datensätze, SQLite-Datenbanken, Retrievalindizes und LoRA-Adaptergewichte werden nicht vollständig über das GitHub-Repository bereitgestellt. Die folgenden externen Assets werden für Training oder Evaluation benötigt.
+Große Basismodelle, die vollständigen Spider-SQLite-Datenbanken und ursprüngliche Datenarchive werden nicht vollständig über das GitHub-Repository bereitgestellt. Projektspezifische autoritative Test-, Few-Shot- und Retrievalartefakte sowie die finalen LoRA-Adapter sind dagegen über GitHub beziehungsweise Hugging Face verfügbar. Die folgenden externen Assets werden zusätzlich für Training oder Evaluation benötigt.
 
 ## 1. Basismodelle
 
@@ -32,33 +32,92 @@ Große Basismodelle, vollständige Datensätze, SQLite-Datenbanken, Retrievalind
 
 Für das semantische Few-Shot-Retrieval wurde folgendes Embeddingmodell verwendet:
 
-- Hugging-Face-ID: `BAAI/bge-large-en-v1.5`
+- Modell: `BAAI/bge-large-en-v1.5`
 - Retrievalverfahren: FAISS `IndexFlatIP`
 - finaler Retrievalpool: 6.960 Spider-Train-Beispiele
 - lokaler Indexname: `spider_train_no_dev_overlap_bge_large_en_v15`
-- Status der exakten Hugging-Face-Revision: noch in der finalen Release-Dokumentation zu ergänzen
 
-Der Retrievalindex ist nicht vollständig im GitHub-Repository enthalten. Er kann anhand der bereitgestellten Retrievalskripte und des dokumentierten Spider-Train-Pools neu erzeugt werden.
+Der vollständige autoritative Retrievalindex ist im GitHub-Repository enthalten:
 
+```text
+data/retrieval_indexes/spider_train_no_dev_overlap_bge_large_en_v15/
+```
+
+Der Ordner enthält insbesondere:
+
+- `index.faiss` als Git-LFS-Datei,
+- `metadata.jsonl` mit 6.960 Spider-Train-Beispielen,
+- `manifest.json`,
+- Retrievalaudits,
+- Prompt-Samples,
+- Token-Budget-Audits.
+
+SHA-256 des finalen FAISS-Index:
+
+```text
+62a0a55a286934d334498ab01eee032407b9ec42c9915f587564a7cf89aa9cfc
+```
+
+SHA-256 des Retrievalpools `metadata.jsonl`:
+
+```text
+05058698f782806dd706040da9a9197345246c20df4d93429d719b79565cda55
+```
 ## 3. Spider
 
 Für die Evaluation wurde Spider Dev mit 1.032 Fällen verwendet.
 
-Verwendung im Projekt:
+Der autoritative projektspezifische Testbestand ist im GitHub-Repository enthalten:
+
+```text
+data/testcases_spider_dev_full.jsonl
+```
+
+SHA-256:
+
+```text
+6ce959230b7b6c3b564a7bdc8a4cb904a6dd62e78f245569489c218dcf1bdcce
+```
+
+Die zugehörige Schemainformation `tables.json` ist ebenfalls enthalten:
+
+```text
+data/spider/spider_data/tables.json
+```
+
+SHA-256:
+
+```text
+61bb20aa401f03164e2d7f3b16509b7b5f79cc9c943ca7bd159046df1159e2ed
+```
+
+Verwendung:
 
 - Spider Train: Bestandteil des LoRA-Trainingsdatensatzes und des Retrievalpools
 - Spider Dev: ausschließlich für die finale Evaluation
 - Spider Dev wurde nicht zur Checkpointauswahl verwendet
 - SQLite-Datenbanken werden zur Execution-Match-Evaluation benötigt
 
-Nicht im GitHub-Repository enthalten:
+Nicht im Repository enthalten sind:
 
-- vollständige Spider-SQLite-Datenbanken
-- das ursprüngliche Spider-Archiv
-- große lokal erzeugte Zwischenartefakte
+- die vollständigen Spider-SQLite-Datenbanken,
+- das ursprüngliche Spider-Archiv.
 
-Die genaue Downloadquelle, Archivversion und der Archivhash sollen vor dem finalen Release ergänzt werden.
+Der Datensatz ist über die offizielle Spider-Projektseite erhältlich:
 
+```text
+https://yale-lily.github.io/spider
+```
+
+Auf der Seite ist bis zum Abschnitt **Getting Started** zu scrollen. Dort kann der Datensatz über den Link **Spider Dataset** heruntergeladen werden.
+
+Nach dem Download müssen die SQLite-Dateien unter folgendem Pfad liegen:
+
+```text
+data/spider/spider_data/database/
+```
+
+Die autoritative Evaluation erwartet dort insgesamt 166 `.sqlite`-Dateien.
 ## 4. SQL Create Context
 
 Zusätzlich zu Spider Train wurde der Datensatz SQL Create Context für das LoRA-Fine-Tuning und die Validation verwendet.
@@ -108,21 +167,20 @@ Bewusst nicht Bestandteil des normalen GitHub-Repositories sind insbesondere:
 - Hugging-Face-Modellcaches
 - historische Adapter und Checkpoints
 - Optimizer-Zustände
-- vollständige Spider-Datenbanken
-- Spider-Archive
-- große FAISS-Indizes
+- vollständige Spider-SQLite-Datenbanken
+- ursprüngliche Spider-Archive
+- nicht autoritative oder historische FAISS-Indizes
 - große Rohresultate
-- vollständige Retrievaltraces
+- zusätzliche vollständige historische Retrievaltraces
 - temporäre Logs und Caches
 
-Diese Trennung reduziert die Repositorygröße und trennt den reproduzierbaren Codebestand von großen externen Forschungsartefakten.
+Der autoritative FAISS-Index, der autoritative Retrievalpool, das Spider-Dev-Testset, `tables.json` sowie die statischen Few-Shot-Artefakte sind dagegen Bestandteil des GitHub-Repositories.
 
 ## 8. Noch zu ergänzende Release-Angaben
 
-Vor dem finalen Release sind folgende Angaben zu vervollständigen:
+Vor dem finalen Release sind folgende Angaben noch zu vervollständigen, soweit verfügbar:
 
 - exakte Revision von `BAAI/bge-large-en-v1.5`
-- genaue Spider-Downloadquelle und Archivhash
+- Archivhash des separat heruntergeladenen Spider-Datensatzarchivs
 - exakte Revision von `philschmid/sql-create-context-copy`
-- Hashes der verwendeten Quelldateien
-- gegebenenfalls Download- oder Buildweg des finalen Retrievalindex
+- ergänzende Hashes ursprünglicher Quelldateien
